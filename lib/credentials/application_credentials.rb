@@ -1,4 +1,4 @@
-module NetfilxDogs
+module NetflixDogs
   class ApplicationCredentials < NetflixDogs::Credentials
     cattr_accessor :key, :secret, :access_token
     cattr_writer :config_location 
@@ -25,7 +25,7 @@ module NetfilxDogs
     end
   
     def self.credentials
-      @credentials ||= YAML.load( File.open(CONFIG_FILENAME) ) || {} if File.exists?( file_location )
+      @credentials ||= YAML.load( File.open( config_location ) ) || {} if File.exists?( config_location )
     end  
   
     def valid?

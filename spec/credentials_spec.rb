@@ -1,17 +1,22 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper') 
-require File.expand_path(File.dirname(__FILE__) + '/../lib/netflix_dogs') 
 
-describe 'Credentials' do 
+describe NetflixDogs::Credentials do
+  before(:each) do 
+  end   
   
   describe 'Application Credentials' do
-    before(:each) do
-      #include 
+    it 'should find the config file in the default location' do 
+      NetflixDogs::ApplicationCredentials.config_location.should include( 'netflix.yml' )
+      File.exists?(NetflixDogs::ApplicationCredentials.config_location).should == true 
     end
-       
-    it 'should find the config file in the default location'
-    it 'should load credentials'
-    it 'should load the correct key'
-    it 'should load the correct secret'
+      
+    it 'should load credentials' do 
+      NetflixDogs::ApplicationCredentials.load_credentials
+      NetflixDogs::ApplicationCredentials.credentials['key'].should == 'my_big_key'
+      NetflixDogs::ApplicationCredentials.credentials['secret'].should == 'uber_secret'
+      NetflixDogs::ApplicationCredentials.key.should == 'my_big_key'
+      NetflixDogs::ApplicationCredentials.secret.should == 'uber_secret'
+    end
   end
   
   describe 'User Credentials' do
