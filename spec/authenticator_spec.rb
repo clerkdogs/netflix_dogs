@@ -29,11 +29,13 @@ describe NetflixDogs::Authenticator do
     end  
   end     
   
-  it 'should create a oauth consumer gateway from the application credentials' do 
-    authenticator = NetflixDogs::Authenticator.new
-    gateway =  authenticator.gateway 
-    gateway.key.should == 'my_big_key'
-    gateway.secret.should == 'uber_secret'
-  end  
+  describe 'consumer gateway' do
+    it 'should create a oauth consumer gateway from the application credentials' do 
+      authenticator = NetflixDogs::Authenticator.new
+      gateway =  authenticator.gateway 
+      gateway.key.should == 'my_big_key'
+      gateway.secret.should == 'uber_secret'
+    end 
+  end    
 
 end
