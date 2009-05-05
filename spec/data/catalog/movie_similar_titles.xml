@@ -1,0 +1,66 @@
+<catalog_titles>  
+  <number_of_results>120</number_of_results>  
+  <start_index>0</start_index>  
+  <results_per_page>2</results_per_page>  
+  <catalog_title>  
+  <id>http://api.netflix.com/catalog/titles/movies/60003959</id><title short="Bird"  
+    regular="Bird"></title>  
+    <etag>515873819112</etag>  
+  <box_art small="http://alien2.netflix.com/us/boxshots/tiny/60003959.jpg"    
+    medium="http://alien2.netflix.com/us/boxshots/small/60003959.jpg"    
+    large="http://alien2.netflix.com/us/boxshots/large/60003959.jpg"></box_art>  
+  <link href="http://api.netflix.com/catalog/titles/movies/60003959/synopsis"  
+      rel="http://schemas.netflix.com/catalog/titles/synopsis"  title="synopsis"></link>  
+  <release_year>1988</release_year>  
+  <category scheme="http://api.netflix.com/categories/mpaa_ratings"  label="R"></category>  
+  <category scheme="http://api.netflix.com/categories/genres"  label="Drama"></category>  
+  <link href="http://api.netflix.com/catalog/titles/movies/60003959/cast"  
+    rel="http://schemas.netflix.com/catalog/people.cast"  title="cast"></link>  
+  <link href="http://api.netflix.com/catalog/titles/movies/60003959/directors"  
+    rel="http://schemas.netflix.com/catalog/people.directors"  title="directors"></link>  
+  <link href="http://api.netflix.com/catalog/titles/movies/60003959/awards"  
+    rel="http://schemas.netflix.com/catalog/titles/awards"  title="awards"></link>  
+  <link href="http://api.netflix.com/catalog/titles/movies/60003959/format_availability"  
+    rel="http://schemas.netflix.com/catalog/titles/format_availability"  title="formats"></link>  
+  <link href="http://api.netflix.com/catalog/titles/movies/60003959/screen_formats"  
+    rel="http://schemas.netflix.com/catalog/titles/screen_formats"  
+    title="screen  formats"></link>  
+  <link href="http://api.netflix.com/catalog/titles/movies/60003959/languages_and_audio"  
+    rel="http://schemas.netflix.com/catalog/titles/languages_and_audio"  
+    title="languages  and audio"></link>  
+  <average_rating>3.4</average_rating>  
+  <link href="http://www.netflix.com/Movie/Bird/60003959"  rel="alternate"  
+    title="webpage"></link>  
+  </catalog_title>  
+  <catalog_title>  
+  <id>http://api.netflix.com/catalog/titles/movies/70019224</id>  
+    <title short="Hotel  Rwanda" regular="Hotel Rwanda"></title>  
+  <box_art small="http://alien2.netflix.com/us/boxshots/tiny/70019224.jpg"  
+      medium="http://alien2.netflix.com/us/boxshots/small/70019224.jpg"  
+      large="http://alien2.netflix.com/us/boxshots/large/70019224.jpg"></box_art>  
+  <link href="http://api.netflix.com/catalog/titles/movies/70019224/synopsis"  
+    rel="http://schemas.netflix.com/catalog/titles/synopsis"  title="synopsis"></link>  
+  <release_year>2005</release_year>  
+  <category scheme="http://api.netflix.com/categories/mpaa_ratings"  
+    label="PG-13"></category>  
+  <category scheme="http://api.netflix.com/categories/genres"  label="Drama"></category>  
+  <link href="http://api.netflix.com/catalog/titles/movies/70019224/cast"  
+    rel="http://schemas.netflix.com/catalog/people.cast"  title="cast"></link>  
+  <link href="http://api.netflix.com/catalog/titles/movies/70019224/directors"  
+    rel="http://schemas.netflix.com/catalog/people.directors"  title="directors"></link>  
+  <link href="http://api.netflix.com/catalog/titles/movies/70019224/awards"  
+      rel="http://schemas.netflix.com/catalog/titles/awards"  title="awards"></link>  
+  <link href="http://api.netflix.com/catalog/titles/movies/70019224/format_availability"  
+    rel="http://schemas.netflix.com/catalog/titles/format_availability"  title="formats"></link>  
+  <link href="http://api.netflix.com/catalog/titles/movies/70019224/screen_formats"  
+    rel="http://schemas.netflix.com/catalog/titles/screen_formats"  
+    title="screen  formats"></link>  
+  <link href="http://api.netflix.com/catalog/titles/movies/70019224/languages_and_audio"  
+    rel="http://schemas.netflix.com/catalog/titles/languages_and_audio"  
+    title="languages  and audio"></link>  
+  <average_rating>4.2</average_rating>  
+  <link href="http://www.netflix.com/Movie/Hotel_Rwanda/70019224"  
+    rel="alternate"  title="webpage"></link>  
+  </catalog_title>  
+</catalog_titles>
+ 

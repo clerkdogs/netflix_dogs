@@ -1,0 +1,61 @@
+<catalog_title_index>  
+  <title_index_item>  
+    <id>http://api.netflix.com/catalog/titles/movies/512381</id>  
+    <updated>1217404229</updated>  
+    <category scheme="http://api.netflix.com/categories/genres" label="Children  &amp;   
+      Family" term="Children &amp; Family"></category>  
+    <link href="http://api.netflix.com/catalog/people/20001977"    
+      rel="http://schemas.netflix.com/catalog/person.actor"  title="Anna  Paquin"></link>  
+    <link href="http://api.netflix.com/catalog/people/23599"   
+      rel="http://schemas.netflix.com/catalog/person.actor"    
+      title="Dana  Delany"></link>  
+    <link href="http://api.netflix.com/catalog/people/21741"   
+      rel="http://schemas.netflix.com/catalog/person.actor"  title="Jeff  Daniels"></link>  
+    <release_year>1996</release_year>  
+    <link href="http://www.netflix.com/Movie/Fly_Away_Home/512381"  rel="alternate"    
+      title="  web page"></link>  
+    <external_ids>  
+    <id rel="http://schemas.netflix.com/catalog/id.upc">0043396824393</id>  
+    <id rel="http://schemas.netflix.com/catalog/id.upc">0043396060463</id>  
+    <id rel="http://schemas.netflix.com/catalog/id.amg">V   154424</id>  
+    </external_ids>  
+    <delivery_formats>  
+      <availability available_from="1199174400">  
+      <category scheme="http://api.netflix.com/categories/title_format"  label="instant"    
+        term="instant"></category>  
+      </availability>  
+      <availability available_from="862297200">  
+      <category scheme="http://api.netflix.com/categories/title_format"  label="DVD"    
+        term="DVD"></category>  
+      </availability>  
+    </delivery_formats>  
+  </title_index_item>  
+  <title_index_item>  
+    <id>http://api.netflix.com/catalog/titles/movies/517905</id>  
+    <category scheme="http://api.netflix.com/categories/genres" label="Drama"  
+      term="Drama"></category>  
+    <link href="http://api.netflix.com/catalog/people/100637"   
+      rel="http://schemas.netflix.com/catalog/person.actor"  title="Elijah  Wood"></link>  
+    <link href="http://api.netflix.com/catalog/people/98401"  
+      rel="http://schemas.netflix.com/catalog/person.actor"  title="George  Wendt"></link>  
+    <link href="http://api.netflix.com/catalog/people/34976"   
+      rel="http://schemas.netflix.com/catalog/person.actor"  title="Isabel  Glasser"></link>  
+    <link href="http://api.netflix.com/catalog/people/21028"   
+      rel="http://schemas.netflix.com/catalog/person.actor"  title="Jamie  Lee Curtis"></link>  
+    <link href="http://api.netflix.com/catalog/people/34396"   
+      rel="http://schemas.netflix.com/catalog/person.actor"  title="Mel  Gibson"></link>  
+    <release_year>1992</release_year>  
+    <link href="http://www.netflix.com/Movie/Forever_Young/517905"  rel="alternate"    
+      title="  web page"></link>  
+    <external_ids>  
+      <id rel="http://schemas.netflix.com/catalog/id.upc">0085391257127</id>  
+      <id rel="http://schemas.netflix.com/catalog/id.amg">V    18235</id>  
+    </external_ids>  
+    <delivery_formats>  
+      <availability available_from="872665200">  
+      <category scheme="http://api.netflix.com/categories/title_format"  label="DVD"  
+        term="DVD"></category>  
+      </availability>  
+    </delivery_formats>  
+  </title_index_item>  
+</catalog_title_index> 

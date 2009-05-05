@@ -1,0 +1,18 @@
+<person>    
+   <id>http://api.netflix.com/catalog/people/152672</id>    
+   <name>Pen&#233;lope  Cruz</name>    
+   <bio>&lt;![CDATA[Always  the performer, Pen&#233;lope Cruz (born April 28,  1974, in Madrid, Spain) began  
+re-enacting TV commercials when she was a toddler  and studied classical ballet during her youth.  
+Her big break, however, came at  age 15 when she beat out hundreds of girls at a talent agency  
+audition.&amp;NFp;Cruz captured audiences' attention with her roles  in 1992's Jamon, Jamon and  
+Belle Epoque (which received an Oscar nod for Best  Foreign Film). In 1999, her work with director  
+Pedro Almodovar on the Best  Foreign Film Oscar winner All About My Mother brought her first
+international  recognition.&amp;NFp;Fluent in Spanish, Italian,  French and English, Cruz  
+continues to work in American and international  productions, appearing in such films as  
+All the Pretty Horses (2000) and  Vanilla Sky (a remake of Eduardo Noriega's Open Your Eyes, in
+which she also  starred). Her turn in Almodovar's Volver (2006) gained her an Oscar nod.]]&gt;</bio>    
+  <link href="http://api.netflix.com/catalog/people/152672/filmography"    
+    rel="http://schemas.netflix.com/catlog/person/filmography"  title="filmography"></link>    
+   <link href="http://www.netflix.com/RoleDisplay/Penelope_Cruz/152672"  rel="alternate"    
+    title="webpage"></link>    
+</person>   

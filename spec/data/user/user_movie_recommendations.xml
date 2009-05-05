@@ -1,0 +1,75 @@
+<recommendations>  
+  <recommendation>  
+    <predicted_rating>4.1</predicted_rating>  
+    <id>http://api.netflix.com/users/T1CnHNCdr7uoFZoFoTtlXxm7H_FbtMI3eaW.7rcu.ssX8-/recommendations/243547</id>  
+    <link href="http://api.netflix.com/catalog/titles/movies/243547"
+      rel="http://schemas.netflix.com/id"    
+      title="title"></link>  
+    <title short="All the  President's Men" regular="All the President's Men"></title>  
+    <box_art small="http://cdn-0.nflximg.com/us/boxshots/tiny/243547.jpg"  
+      medium="http://cdn-0.nflximg.com/us/boxshots/small/243547.jpg"    
+      large="http://cdn-0.nflximg.com/us/boxshots/large/243547.jpg"></box_art>  
+    <link href="http://api.netflix.com/catalog/titles/movies/243547/synopsis"    
+      rel="http://schemas.netflix.com/catalog/titles/synopsis"  title="synopsis"></link>  
+    <release_year>1976</release_year>  
+    <category scheme="http://api.netflix.com/categories/mpaa_ratings"  label="PG"  term="PG"></category>  
+    <category scheme="http://api.netflix.com/categories/genres"  label="Drama"  term="Drama"></category>  
+    <link href="http://api.netflix.com/catalog/titles/movies/243547/cast"    
+      rel="http://schemas.netflix.com/catalog/people.cast"  title="cast"></link>  
+    <link href="http://api.netflix.com/catalog/titles/movies/243547/directors"    
+      rel="http://schemas.netflix.com/catalog/people.directors"  title="directors"></link>  
+    <link href="http://api.netflix.com/catalog/titles/movies/243547/awards"    
+      rel="http://schemas.netflix.com/catalog/titles/awards"  title="awards"></link>  
+    <link href="http://api.netflix.com/catalog/titles/movies/243547/format_availability"    
+      rel="http://schemas.netflix.com/catalog/titles/format_availability"  title="formats"></link>  
+    <link href="http://api.netflix.com/catalog/titles/movies/243547/screen_formats"    
+      rel="http://schemas.netflix.com/catalog/titles/screen_formats"
+      title="screen  formats"></link>  
+    <link href="http://api.netflix.com/catalog/titles/movies/243547/languages_and_audio"    
+      rel="http://schemas.netflix.com/catalog/titles/languages_and_audio"
+      title="languages  and audio"></link>  
+    <average_rating>4.0</average_rating>  
+    <link href="http://api.netflix.com/catalog/titles/movies/243547/similars"    
+      rel="http://schemas.netflix.com/catalog/titles.similars"  title="similars"></link>  
+    <link href="http://www.netflix.com/Movie/All_the_President_s_Men/243547"  rel="alternate"    
+      title="webpage"></link>  
+  </recommendation>  
+  
+  <recommendation>  
+    <predicted_rating>4.1</predicted_rating>  
+    <id>http://api.netflix.com/users/T1CnHNCdr7uoFZoFoTtlXxm7H_FbtMI3eaW.7rcu.ssX8-/recommendations/262839</id>  
+    <link href="http://api.netflix.com/catalog/titles/movies/262839"
+      rel="http://schemas.netflix.com/id"    
+      title="title"></link><title short="Apocalypse  Now" regular="Apocalypse Now"></title>  
+    <box_art small="http://cdn-0.nflximg.com/us/boxshots/tiny/262839.jpg"    
+      medium="http://cdn-0.nflximg.com/us/boxshots/small/262839.jpg"    
+      large="http://cdn-0.nflximg.com/us/boxshots/large/262839.jpg"></box_art>  
+    <link href="http://api.netflix.com/catalog/titles/movies/262839/synopsis"    
+      rel="http://schemas.netflix.com/catalog/titles/synopsis"  title="synopsis"></link>  
+    <release_year>1979</release_year>  
+    <category scheme="http://api.netflix.com/categories/mpaa_ratings"  label="R"  term="R"></category>  
+    <category scheme="http://api.netflix.com/categories/genres" label="Drama"  term="Drama"></category>  
+    <link href="http://api.netflix.com/catalog/titles/movies/262839/cast"    
+      rel="http://schemas.netflix.com/catalog/people.cast"  title="cast"></link>  
+    <link href="http://api.netflix.com/catalog/titles/movies/262839/directors"    
+      rel="http://schemas.netflix.com/catalog/people.directors"  title="directors"></link>  
+    <link href="http://api.netflix.com/catalog/titles/movies/262839/awards"    
+      rel="http://schemas.netflix.com/catalog/titles/awards"  title="awards"></link>  
+    <link href="http://api.netflix.com/catalog/titles/movies/262839/format_availability"    
+      rel="http://schemas.netflix.com/catalog/titles/format_availability"  title="formats"></link>  
+    <link href="http://api.netflix.com/catalog/titles/movies/262839/screen_formats"    
+      rel="http://schemas.netflix.com/catalog/titles/screen_formats"  title="screen  formats">
+    </link>  
+    <link href="http://api.netflix.com/catalog/titles/movies/262839/languages_and_audio"    
+      rel="http://schemas.netflix.com/catalog/titles/languages_and_audio"
+      title="languages  and audio"></link>  
+    <average_rating>4.0</average_rating>  
+    <link href="http://api.netflix.com/catalog/titles/movies/262839/similars"    
+      rel="http://schemas.netflix.com/catalog/titles.similars"  title="similars"></link>  
+    <link href="http://www.miramax.com/apocalypsenow/"   
+      rel="http://schemas.netflix.com/catalog/titles/official_url"  title="official  webpage">  
+    </link>  
+    <link href="http://www.netflix.com/Movie/Apocalypse_Now/262839"  rel="alternate"  title="webpage"></link>  
+</recommendation>  
+  
+</recommendations>

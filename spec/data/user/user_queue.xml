@@ -1,0 +1,109 @@
+<queue>  
+  <etag>819873819117</etag>  
+<number_of_results>220</number_of_results>  
+<start_index>0</start_index>  
+<results_per_page>3</results_per_page>  
+<queue_item>  
+<id>http://api.netflix.com/users/T1DonaZPk00Jl39mXvKMpOsJ344BJtLQAh4SyvxWAV4Tk-/  
+  queues/disc/available/1/251454</id>  
+<position>1</position>  
+<link href="http://api.netflix.com/users/T1DonaZPk00Jl39mXvKMpOsJ344BJtLQAh4SyvxWAV4Tk-/queues/disc/available"    
+  rel="queue_ref"  title="Available  Queue"></link>  
+<category scheme="http://api.netflix.com/categories/queue_availability"  label="available_now"></category>  
+<updated>1204284910</updated>  
+<category scheme="http://api.netflix.com/catalog/titles/format"  label="DVD"></category>  
+<link href="http://api.netflix.com/catalog/titles/movies/251454"  rel="http://schemas.netflix.com/id"    
+  title="title"></link><title short="An  American in Paris" regular="An  American in Paris"></title>  
+<box_art small="http://alien2.netflix.com/us/boxshots/tiny/251454.jpg"    
+  medium="http://alien2.netflix.com/us/boxshots/small/251454.jpg"    
+  large="http://alien2.netflix.com/us/boxshots/large/251454.jpg"></box_art>  
+<link href="http://api.netflix.com/catalog/titles/movies/251454/synopsis"    
+  rel="http://schemas.netflix.com/catalog/titles/synopsis"  title="synopsis"></link>  
+<release_year>1951</release_year>  
+<category scheme="http://api.netflix.com/categories/mpaa_ratings"  label="UR"></category>  
+<category scheme="http://api.netflix.com/categories/genres"  label="Classics"></category>  
+<link href="http://api.netflix.com/catalog/titles/movies/251454/cast"    
+  rel="http://schemas.netflix.com/catalog/people.cast"  title="cast"></link>  
+<link href="http://api.netflix.com/catalog/titles/movies/251454/directors"    
+  rel="http://schemas.netflix.com/catalog/people.directors"  title="directors"></link>  
+<link href="http://api.netflix.com/catalog/titles/movies/251454/awards"    
+  rel="http://schemas.netflix.com/catalog/titles/awards"  title="awards"></link>  
+<link href="http://api.netflix.com/catalog/titles/movies/251454/format_availability"    
+  rel="http://schemas.netflix.com/catalog/titles/format_availability"  title="formats"></link>  
+<link href="http://api.netflix.com/catalog/titles/movies/251454/screen_formats"    
+  rel="http://schemas.netflix.com/catalog/titles/screen_formats"  title="screen  formats"></link>  
+<link href="http://api.netflix.com/catalog/titles/movies/251454/languages_and_audio"    
+  rel="http://schemas.netflix.com/catalog/titles/languages_and_audio"  title="languages  and audio"></link>  
+<average_rating>3.7</average_rating>  
+<link href="http://api.netflix.com/catalog/titles/movies/251454/similars"    
+  rel="http://schemas.netflix.com/catalog/titles.similars"  title="similars"></link>  
+<link href="http://www.netflix.com/Movie/An_American_in_Paris/251454"    
+  rel="alternate"  title="webpage"></link>  
+</queue_item>  
+  
+<queue_item>  
+<id>http://api.netflix.com/users/T1DonaZPk00Jl39mXvKMpOsJ344BJtLQAh4SyvxWAV4Tk-/queues/  
+  disc/available/2/70038486</id>  
+<position>2</position>  
+<link href="http://api.netflix.com/users/T1DonaZPk00Jl39mXvKMpOsJ344BJtLQAh4SyvxWAV4Tk-/  
+  queues/disc/available"  rel="queue_ref"  title="Available  Queue"></link>  
+<category scheme="http://api.netflix.com/categories/queue_availability"  label="available_now"></category>  
+<updated>1204284933</updated>  
+<category scheme="http://api.netflix.com/catalog/titles/format"  label="DVD"></category>  
+<link href="http://api.netflix.com/catalog/titles/movies/70038486"  rel="http://schemas.netflix.com/id"    
+  title="title"></link><title short="Ben-Hur:  Collector's Edition" regular="Ben-Hur: Collector's Edition"></title>  
+<box_art small="http://alien2.netflix.com/us/boxshots/tiny/70038486.jpg"    
+  medium="http://alien2.netflix.com/us/boxshots/small/70038486.jpg"    
+  large="http://alien2.netflix.com/us/boxshots/large/70038486.jpg"></box_art>  
+<link href="http://api.netflix.com/catalog/titles/movies/70038486/synopsis"    
+  rel="http://schemas.netflix.com/catalog/titles/synopsis"  title="synopsis"></link>  
+<release_year>1959</release_year>  
+<category scheme="http://api.netflix.com/categories/mpaa_ratings"  label="NR"></category>  
+<category scheme="http://api.netflix.com/categories/genres"  label="Classics"></category>  
+<link href="http://api.netflix.com/catalog/titles/movies/70038486/cast"    
+  rel="http://schemas.netflix.com/catalog/people.cast"  title="cast"></link>  
+<link href="http://api.netflix.com/catalog/titles/movies/70038486/directors"    
+  rel="http://schemas.netflix.com/catalog/people.directors"  title="directors"></link>  
+<link href="http://api.netflix.com/catalog/titles/movies/70038486/awards"    
+  rel="http://schemas.netflix.com/catalog/titles/awards"  title="awards"></link>  
+<link href="http://api.netflix.com/catalog/titles/movies/70038486/format_availability"    
+  rel="http://schemas.netflix.com/catalog/titles/format_availability"  title="formats"></link>  
+<link href="http://api.netflix.com/catalog/titles/movies/70038486/screen_formats"    
+  rel="http://schemas.netflix.com/catalog/titles/screen_formats"  title="screen  formats"></link>  
+<link href="http://api.netflix.com/catalog/titles/movies/70038486/languages_and_audio"    
+  rel="http://schemas.netflix.com/catalog/titles/languages_and_audio"  title="languages  and audio"></link>  
+<average_rating>4.1</average_rating>  
+<link href="http://api.netflix.com/catalog/titles/movies/70038486/similars"    
+  rel="http://schemas.netflix.com/catalog/titles.similars"  title="similars"></link>  
+<link href="http://www.netflix.com/Movie/Ben-Hur_Collector_s_Edition/70038486"  rel="alternate" title="webpage"></link>  
+</queue_item>  
+  
+<queue_item>  
+<id>http://api.netflix.com/users/T1DonaZPk00Jl39mXvKMpOsJ344BJtLQAh4SyvxWAV4Tk-/queues/disc/saved/70071617</id>  
+<link href="http://api.netflix.com/users/T1DonaZPk00Jl39mXvKMpOsJ344BJtLQAh4SyvxWAV4Tk-/queues/disc/saved"    
+  rel="http://schemas.netflix.com/queues"  title="Saved  Queue"></link>  
+<category scheme="http://api.netflix.com/categories/queue_availability"  label="saved"></category>  
+<updated>1217949743</updated>  
+<category scheme="http://api.netflix.com/catalog/titles/format"  label="DVD"></category>  
+<link href="http://api.netflix.com/catalog/titles/movies/70071617"  rel="http://schemas.netflix.com/id"    
+  title="title"></link><title short="Triangle"  regular="Triangle"></title>  
+<box_art small="http://alien2.netflix.com/us/boxshots/tiny/70071617.jpg"    
+  medium="http://alien2.netflix.com/us/boxshots/small/70071617.jpg"    
+  large="http://alien2.netflix.com/us/boxshots/large/70071617.jpg"></box_art>  
+<link href="http://api.netflix.com/catalog/titles/movies/70071617/synopsis"    
+  rel="http://schemas.netflix.com/catalog/titles/synopsis"  title="synopsis"></link>  
+<release_year>2007</release_year>  
+<category scheme="http://api.netflix.com/categories/mpaa_ratings"  label="NR"></category>  
+<category scheme="http://api.netflix.com/categories/genres"  label="Foreign"></category>  
+<link href="http://api.netflix.com/catalog/titles/movies/70071617/cast"  rel="http://schemas.netflix.com/catalog/people.cast"  title="cast"></link>  
+<link href="http://api.netflix.com/catalog/titles/movies/70071617/directors"    
+  rel="http://schemas.netflix.com/catalog/people.directors"  title="directors"></link>  
+<link href="http://api.netflix.com/catalog/titles/movies/70071617/format_availability"    
+  rel="http://schemas.netflix.com/catalog/titles/format_availability"  title="formats"></link>  
+<average_rating>3.3</average_rating>  
+<link href="http://api.netflix.com/catalog/titles/movies/70071617/similars"    
+  rel="http://schemas.netflix.com/catalog/titles.similars"  title="similars"></link>  
+<link href="http://www.netflix.com/Movie/Triangle/70071617"  rel="alternate"  title="webpage"></link>  
+</queue_item>  
+  
+</queue>

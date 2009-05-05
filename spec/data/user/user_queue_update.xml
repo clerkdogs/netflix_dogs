@@ -1,0 +1,100 @@
+<status>  
+  <status_code>201</status_code>  
+  <sub_code>640</sub_code>  
+  <message>Only some of  the titles in the series or disc set could be added.</message>  
+  <etag>657707210550</etag>  
+  <resources_created>  
+    <queue_item>  
+        <id>http://api.netflix.com/users/T1argz9Jf.Skky8UdZ4XVuNkV8MaErAMAMcbR4s2_irVY-/queues/disc/available/144/27830306</id>  
+        <position>144</position>  
+        <link href="http://api.netflix.com/users/T1argz9Jf.Skky8UdZ4XVuNkV8MaErAMAMcbR4s2_irVY-/queues/disc/available"  
+          rel="http://schemas.netflix.com/queues.available" title="available queue"></link>  
+        <category scheme="http://api.netflix.com/categories/queue_availability"  
+          label="awaiting release” term="awaiting_release"></category>  
+        <updated>1217949743</updated>  
+        <availability_date>1217985495</availability_date>  
+        <category scheme="http://api.netflix.com/catalog/titles/format" label="DVD" term="DVD"></category>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306"  
+          rel="http://schemas.netflix.com/title" title="title"></link>  
+        <title short="The Larry Sanders Show: Season 1: Disc 1" regular="The Larry  Sanders Show: Season 1: Disc 1"></title>  
+        <box_art small="http://alien2.netflix.com/us/boxshots/tiny/60030437.jpg"  
+          medium="http://alien2.netflix.com/us/boxshots/small/60030437.jpg"  
+          large="http://alien2.netflix.com/us/boxshots/large/60030437.jpg"></box_art>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/synopsis"  
+          rel="http://schemas.netflix.com/catalog/titles/synopsis" title="synopsis"></link>  
+        <release_year>1992</release_year>  
+        <category scheme="http://api.netflix.com/categories/tv_ratings" label="TV-MA"  
+          term="TV-MA"></category>  
+        <category scheme="http://api.netflix.com/categories/genres" label="Television"  
+          term="Television"></category>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/cast"  
+          rel="http://schemas.netflix.com/catalog/people.cast" title="cast"></link>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/directors"  
+          rel="http://schemas.netflix.com/catalog/people.directors" title="directors"></link>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/format_availability"  
+          rel="http://schemas.netflix.com/catalog/titles/format_availability" title="formats"></link>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/screen_formats"  
+          rel="http://schemas.netflix.com/catalog/titles/screen_formats" title="screen formats"></link>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/languages_and_audio"  
+          rel="http://schemas.netflix.com/catalog/titles/languages_and_audio"  
+          title="languages and audio"></link>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/similars"  
+          rel="http://schemas.netflix.com/catalog/titles.similars" title="similars"></link>  
+        <link href="http://api.netflix.com/Movie/The_Larry_Sanders_Show_Season_1_Disc_1/27830306"  
+          rel="alternate" title="webpage"></link>  
+      </queue_item>  
+      <queue_item>  
+        <id>http://api.netflix.com/users/T1argz9Jf.Skky8UdZ4XVuNkV8MaErAMAMcbR4s2_irVY-/queues/disc/available/144/27830307</id>  
+        <position>144</position>  
+        <link href="http://api.netflix.com/users/T1argz9Jf.Skky8UdZ4XVuNkV8MaErAMAMcbR4s2_irVY-/queues/disc/available"  
+          rel="http://schemas.netflix.com/queues.available" title="available queue"></link>  
+        <category scheme="http://api.netflix.com/categories/queue_availability"  
+          label="awaiting release"  term="awaiting_release"></category>  
+        <availability_date>1217985495</availability_date>  
+        <updated>1217949743</updated>  
+        <category scheme="http://api.netflix.com/catalog/titles/format" label="DVD"  
+          term="DVD"></category>  
+        <link href="http://api.netflix.com/catalog/titles/discs/278303010"  
+          rel="http://schemas.netflix.com/title" title="title"></link>  
+        <title short="The Larry Sanders Show: Season 1: Disc 5"  
+          regular="The Larry  Sanders Show: Season 1: Disc 5"></title>  
+        <box_art small="http://alien2.netflix.com/us/boxshots/tiny/60030437.jpg"  
+          medium="http://alien2.netflix.com/us/boxshots/small/60030437.jpg"  
+          large="http://alien2.netflix.com/us/boxshots/large/60030437.jpg"></box_art>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/synopsis"  
+          rel="http://schemas.netflix.com/catalog/titles/synopsis" title="synopsis"></link>  
+        <release_year>1992</release_year>  
+        <category scheme="http://api.netflix.com/categories/tv_ratings" label="TV-MA"  
+          term="TV-MA"></category>  
+        <category scheme="http://api.netflix.com/categories/genres" label="Television"  
+          term="Television"></category>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/cast"  
+          rel="http://schemas.netflix.com/catalog/people.cast" title="cast"></link>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/directors"  
+          rel="http://schemas.netflix.com/catalog/people.directors" title="directors"></link>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/format_availability"  
+          rel="http://schemas.netflix.com/catalog/titles/format_availability" title="formats">
+        </link>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/screen_formats"  
+          rel="http://schemas.netflix.com/catalog/titles/screen_formats"  
+          title="screen formats"></link>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/languages_and_audio"  
+          rel="http://schemas.netflix.com/catalog/titles/languages_and_audio"  
+          title="languages and audio"></link>  
+        <link href="http://api.netflix.com/catalog/titles/discs/27830306/similars"  
+          rel="http://schemas.netflix.com/catalog/titles.similars" title="similars"></link>  
+        <link href="http://api.netflix.com/Movie/The_Larry_Sanders_Show_Season_1_Disc_1527830306"  
+          rel="alternate" title="webpage"></link>  
+    </queue_item>  
+  </resources_created>          
+  <failed_title_refs>  
+    <link href=”http://api.netflix.com/catalog/titles/discs/60022257”  
+      rel=”http://schemas.netflix.com/title"  title= The Larry Sanders Show: Season 1:  Disc 2</id>  
+  </failed_title_refs>  
+  <already_in_queue>  
+    <link href=”http://api.netflix.com/catalog/titles/discs/60022258”  
+      rel=”http://schemas.netflix.com/title"  title= The Larry Sanders Show: Season 1:  Disc 3</id>  
+    <link href=”http://api.netflix.com/catalog/titles/discs/60022259”  
+      rel=”http://schemas.netflix.com/title"  title= The Larry Sanders Show: Season 1:  Disc 4</id>  
+  </already_in_queue>  
+</status>

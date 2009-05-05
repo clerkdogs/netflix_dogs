@@ -129,7 +129,9 @@ describe NetflixDogs::Catalog do
         @title.query_string.should match(/include_amg=1/)
       end
            
-    end  
+    end 
+    
+     
   end   
 
 end

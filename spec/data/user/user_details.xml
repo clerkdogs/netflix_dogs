@@ -1,0 +1,22 @@
+<user>  
+  <user_id>T1PambOVJXcoWzNRQEyacp76BnRn0TIJdxKGyklbY0srg-</user_id>  
+  <first_name>Jane</first_name>  
+  <last_name>Smith</last_name>  
+  <can_instant_watch>true</can_instant_watch>  
+  <preferred_formats>  
+    <category scheme="http://api.netflix.com/catalog/titles/format" label="HD  DVD"></category>  
+    <category scheme="http://api.netflix.com/catalog/titles/format" label="DVD"></category>  
+  </preferred_formats>  
+  <link href="http://api.netflix.com/users/T1PambOVJXcoWzNRQEyacp76BnRn0TIJdxKGyklbY0srg-/queues"  
+    rel="http://schemas.netflix.com/queues"  title="queues"></link>  
+  <link href="http://api.netflix.com/users/T1PambOVJXcoWzNRQEyacp76BnRn0TIJdxKGyklbY0srg-/rental_history"  
+    rel="http://schemas.netflix.com/rental_history"  title="rental  history"></link>  
+  <link href="http://api.netflix.com/users/T1PambOVJXcoWzNRQEyacp76BnRn0TIJdxKGyklbY0srg-/recommendations"  
+    rel="http://schemas.netflix.com/recommendations"  title="recommendations"></link>  
+  <link href="http://api.netflix.com/users/T1PambOVJXcoWzNRQEyacp76BnRn0TIJdxKGyklbY0srg-/title_states"  
+    rel="http://schemas.netflix.com/title_states"  title="title  states"></link>  
+  <link href="http://api.netflix.com/users/T1PambOVJXcoWzNRQEyacp76BnRn0TIJdxKGyklbY0srg-/ratings"  
+    rel="http://schemas.netflix.com/ratings"  title="ratings"></link>  
+  <link href="http://api.netflix.com/users/T1PambOVJXcoWzNRQEyacp76BnRn0TIJdxKGyklbY0srg-/reviews"  
+    rel="http://schemas.netflix.com/reviews"  title="reviews"></link>  
+</user> 
