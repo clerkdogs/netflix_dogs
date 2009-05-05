@@ -1,13 +1,12 @@
 require 'rubygems'
 require 'activesupport'
+require 'oauth'
 
 $:.unshift(File.dirname(__FILE__)) 
 
-# load credentials
-require 'credentials/credentials' 
-require 'credentials/application_credentials'
-require 'credentials/user_credentials'
+# load authenticator
+require 'authenticator'
 
-module NetflixDogs
+module NetflixDogs 
 end   
  
