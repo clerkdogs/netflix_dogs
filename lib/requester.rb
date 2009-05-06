@@ -148,22 +148,25 @@ module NetflixDogs
     
     # assumes that it goes on the end of query string
     def build_auth_query_string
+      self.auth_query_string = ''
       auth_hash.each do |key, value|
         self.auth_query_string << '&' 
         self.auth_query_string << URI.escape(key)
         self.auth_query_string << '='
-        self.auth_query_string << URI.escape(value)
-      end 
+        self.auth_query_string << URI.escape(value.to_s)
+      end
+      auth_query_string 
     end
     
     def auth_query_url
-      self.class.api_url + query_path + query_auth_string
+      self.class.api_url + query_path + auth_query_string
     end
     
-    def signature 
+    def signature
+      build_auth_query_string 
       unless @signature
         signature_key = URI.escape( "#{secret}&" )
-        signature_base_string = "GET&#{self.class.api_url}#{base_path}&#{encoded_parameters}"
+        signature_base_string = "GET&#{self.class.api_url}#{base_path}&#{query_path+auth_query_string}"
         @signature ||= Base64.encode64(
           HMAC::SHA1.digest( signature_key, signature_base_string )
         ).chomp.gsub(/\n/,'')  
