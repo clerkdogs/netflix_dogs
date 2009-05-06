@@ -3,7 +3,7 @@ module NetflixDogs
   # they would be calling each other in very spaghetti ways
   class Requester 
     attr_accessor :query_string, :auth_query_string, :base_path 
-    attr_writer   :signature
+    attr_writer   :signature 
     cattr_accessor :key, :secret
     
     # I N I T I A L I Z E -------------------------------
@@ -19,7 +19,7 @@ module NetflixDogs
     end 
     
     # this will clear existing credentials and load from the new location
-    def self.config_location=( location) 
+    def self.config_location=( location)
       reset_credentials
       @config_location = location
       load_credentials
@@ -39,15 +39,11 @@ module NetflixDogs
       raise ArgumentError, 'Netflix credentials not found. Please request API credentials from Netflix and add them to the YAML configuration file.' if key.nil? || secret.nil?
     end
     
-    def self.credentials
-      @credentials ||= YAML.load( File.open( config_location ) ) || {} if File.exists?( config_location )
+    def self.credentials 
+      raise ArgumentError, 'Netflix YAML configuration not found at ' + config_location unless File.exists?( config_location )
+      @credentials ||= YAML.load( File.open( config_location ) ) || {}
     end 
      
-    # instance methods
-    def valid?
-      (self.class.key && self.class.secret) != nil
-    end
-    
     def key
       self.class.load_credentials unless self.class.key
       self.class.key
@@ -94,7 +90,7 @@ module NetflixDogs
       query_string  
     end 
     
-    def oauth_query_path
+    def query_path
       base_path + query_string
     end   
     

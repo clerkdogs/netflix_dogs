@@ -1,15 +1,30 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper') 
 
 describe NetflixDogs::Requester do
+  before(:all) do 
+    NetflixDogs::Requester.config_location = nil
+  end
+    
   before(:each) do
     @requester = NetflixDogs::Requester.new( 'base_path' )
   end
   
   describe 'credentials' do 
-    before(:all) do 
-      # reset location 
-      NetflixDogs::Requester.config_location = RAILS_ROOT + '/config/netflix.yml'
+    before(:each) do 
+      NetflixDogs::Requester.config_location = nil
     end  
+    
+    it 'should throw an error if the config file is not found' do 
+      lambda { 
+        NetflixDogs::Requester.config_location = '/not_here.yml' 
+      }.should raise_error
+    end
+    
+    it 'should throw an error if config file doesn\'t contain a key and secret' do 
+      lambda{
+        NetflixDogs::Requester.config_location = RAILS_ROOT + '/config/bad_data.yml'
+      }.should raise_error
+    end    
     
     it 'should find the config file in the default location' do
       NetflixDogs::Requester.config_location.should include( 'netflix.yml' )
@@ -54,12 +69,31 @@ describe NetflixDogs::Requester do
       @requester.query_string.should match(/(&)/)
       @requester.query_string.should match(/pizza=good/)
       @requester.query_string.should match(/beer=plenty/)
-    end     
+    end
+    
+    it 'should have a query path' do
+      @requester.build_query_string( 
+        'pizza' => 'good',
+        'beer' => 'plenty'
+      ) 
+      @requester.query_path.should match(/base_path/) 
+      @requester.query_path.should match(/\?/) 
+      @requester.query_path.should match(/(&)/)
+      @requester.query_path.should match(/pizza=good/)
+      @requester.query_path.should match(/beer=plenty/)
+    end       
     
   end  
   
   describe 'non-user oauth packaging' do
-    it 'should build a set of correct auth params'
+    it 'should have a set of correct auth params' do
+      @requester.auth_hash['oauth_consumer_key'].should == 'my_big_key'
+      @requester.auth_hash['oauth_signature_method'].should == "HMAC-SHA1"
+      @requester.auth_hash['oauth_timestamp'].class.should == Time.now.to_i.class
+      @requester.auth_hash['oauth_nonce'].class.should == 1.class
+      @requester.auth_hash['oauth_version'].should == '1.0'
+    end 
+     
     it 'should build those params into an auth query string'
     it 'should package the auth query url'
     it 'should create a signature'
