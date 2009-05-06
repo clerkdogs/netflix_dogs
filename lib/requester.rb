@@ -2,13 +2,14 @@ module NetflixDogs
   # This class could be broken into Authentication stuff and Request stuff, but
   # they would be calling each other in very spaghetti ways
   class Requester 
-    attr_accessor :query_string, :auth_query_string, :base_path 
-    attr_writer   :signature 
+    attr_accessor :base_path, :queries 
+    attr_writer   :signature
     cattr_accessor :key, :secret
     
     # I N I T I A L I Z E -------------------------------
     def initialize( path )
       self.base_path = path
+      self.queries = {}
     end  
     
     # C R E D E N T I A L S -----------------------------
@@ -78,21 +79,36 @@ module NetflixDogs
       @authorization_url ||=  "https://api-user.netflix.com/oauth/login" 
     end 
     
-    # COMMON PARAMS PARSING METHODS
-    def build_query_string( query_hash )
-      self.query_string = "?"
-      query_hash.each do |key, value|
-        self.query_string << '&' unless query_string.size == 1
-        self.query_string << URI.escape(key)
-        self.query_string << '='
-        self.query_string << URI.escape(value)
+    # COMMON PARAMS/QUERY PARSING METHODS
+    def url # includes the api_url
+      self.class.api_url + query_path
+    end
+    
+    def query_path # does not include the api_url
+      base_path + query_string
+    end
+    
+    def query_string
+      arr = []
+      query_order.each do |key|
+        arr << "#{key}=#{queries[key]}"
       end
-      query_string  
+      string = "?"
+      string << arr.join('&')
+      string  
     end 
     
-    def query_path
-      base_path + query_string
+    def add_to_query( query_hash )
+      query_hash.each do |key, value|
+        self.queries[key] = URI.escape(value.to_s)
+      end
+    end
+    
+    def query_order # alphabetical key order
+      queries.keys.sort
     end   
+     
+       
     
     # AUTHORIZATION PROTOCOLS ============
     # OAuth ------------------------------
@@ -132,8 +148,8 @@ module NetflixDogs
     # still needs all the oauth type packaging. So below are the 
     # methods for constructing the oauth security, less the token 
     
-    def go 
-      
+    def send_request 
+      # do something ... 
     end
     
     def auth_hash
@@ -148,25 +164,14 @@ module NetflixDogs
     
     # assumes that it goes on the end of query string
     def build_auth_query_string
-      self.auth_query_string = ''
-      auth_hash.each do |key, value|
-        self.auth_query_string << '&' 
-        self.auth_query_string << URI.escape(key)
-        self.auth_query_string << '='
-        self.auth_query_string << URI.escape(value.to_s)
-      end
-      auth_query_string 
-    end
-    
-    def auth_query_url
-      self.class.api_url + query_path + auth_query_string
+      add_to_query( auth_hash ) 
     end
     
     def signature
       build_auth_query_string 
       unless @signature
         signature_key = URI.escape( "#{secret}&" )
-        signature_base_string = "GET&#{self.class.api_url}#{base_path}&#{query_path+auth_query_string}"
+        signature_base_string = "GET&#{self.class.api_url}#{base_path}&#{query_path}"
         @signature ||= Base64.encode64(
           HMAC::SHA1.digest( signature_key, signature_base_string )
         ).chomp.gsub(/\n/,'')  

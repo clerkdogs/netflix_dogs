@@ -61,7 +61,7 @@ describe NetflixDogs::Requester do
   
   describe 'parameter packaging' do 
     it 'should be able to encode query string from a hash' do 
-      @requester.build_query_string(
+      @requester.add_to_query(
         'pizza' => 'good',
         'beer' => 'plenty'
       )
@@ -72,7 +72,7 @@ describe NetflixDogs::Requester do
     end
     
     it 'should have a query path' do
-      @requester.build_query_string( 
+      @requester.add_to_query( 
         'pizza' => 'good',
         'beer' => 'plenty'
       ) 
@@ -96,33 +96,33 @@ describe NetflixDogs::Requester do
      
     it 'should build those params into an auth query string' do 
       @requester.build_auth_query_string
-      @requester.auth_query_string.should match(/oauth_consumer_key=my_big_key/)
-      @requester.auth_query_string.should match(/oauth_signature_method=HMAC-SHA1/)
-      @requester.auth_query_string.should match(/oauth_timestamp=/)
-      @requester.auth_query_string.should match(/oauth_nonce=/)
-      @requester.auth_query_string.should match(/oauth_version=1.0/)
+      @requester.query_string.should match(/oauth_consumer_key=my_big_key/)
+      @requester.query_string.should match(/oauth_signature_method=HMAC-SHA1/)
+      @requester.query_string.should match(/oauth_timestamp=/)
+      @requester.query_string.should match(/oauth_nonce=/)
+      @requester.query_string.should match(/oauth_version=1.0/)
     end
       
     it 'should package the auth query url' do
-      @requester.build_query_string( 
+      @requester.add_to_query( 
         'pizza' => 'good',
         'beer' => 'plenty'
       ) 
       @requester.build_auth_query_string
       
-      @requester.auth_query_url.should match(/^http:\/\/api.netflix.com/) 
-      @requester.auth_query_url.should match(/base_path/) 
-      @requester.auth_query_url.should match(/pizza=good/)
-      @requester.auth_query_url.should match(/beer=plenty/)
-      @requester.auth_query_url.should match(/oauth_consumer_key=my_big_key/)
-      @requester.auth_query_url.should match(/oauth_signature_method=HMAC-SHA1/)
-      @requester.auth_query_url.should match(/oauth_timestamp=/)
-      @requester.auth_query_url.should match(/oauth_nonce=/)
-      @requester.auth_query_url.should match(/oauth_version=1.0/)
+      @requester.url.should match(/^http:\/\/api.netflix.com/) 
+      @requester.url.should match(/base_path/) 
+      @requester.url.should match(/pizza=good/)
+      @requester.url.should match(/beer=plenty/)
+      @requester.url.should match(/oauth_consumer_key=my_big_key/)
+      @requester.url.should match(/oauth_signature_method=HMAC-SHA1/)
+      @requester.url.should match(/oauth_timestamp=/)
+      @requester.url.should match(/oauth_nonce=/)
+      @requester.url.should match(/oauth_version=1.0/)
     end
       
     it 'should create a signature' do 
-      @requester.build_query_string( 
+      @requester.add_to_query( 
         'pizza' => 'good',
         'beer' => 'plenty'
       ) 
@@ -130,8 +130,5 @@ describe NetflixDogs::Requester do
     end
       
   end  
-  
-  
-  
 
 end

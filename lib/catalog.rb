@@ -9,8 +9,8 @@ module NetflixDogs
     end
     
     def go( hash )
-      requester.build_query_string( hash ) 
-      requester.go
+      requester.add_to_query( hash ) 
+      requester.send_request
     end  
   
   end  
