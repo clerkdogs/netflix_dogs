@@ -10,7 +10,7 @@ module NetflixDogs
     
     def go( hash )
       requester.add_to_query( hash ) 
-      requester.send_request
+      requester.go( :catalog )
     end  
   
   end  

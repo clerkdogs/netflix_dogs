@@ -10,7 +10,16 @@ module NetflixDogs
     def initialize( path )
       self.base_path = path
       self.queries = {}
-    end  
+    end 
+    
+    # G O -----------------------------------------------
+    def go( type=:user )
+      if type == :user
+        # do some oauth stuff
+      else 
+        send_non_auth_request
+      end    
+    end   
     
     # C R E D E N T I A L S -----------------------------
     # ---------------------------------------------------
@@ -81,19 +90,22 @@ module NetflixDogs
     
     # COMMON PARAMS/QUERY PARSING METHODS
     def url # includes the api_url
-      self.class.api_url + query_path
+      "#{self.class.api_url}/#{query_path}"
     end
     
     def query_path # does not include the api_url
-      base_path + query_string
+      base_path + '?' +query_string
     end
     
-    def query_string
+    def query_string(include_oauth_signature=true)
       arr = []
       query_order.each do |key|
-        arr << "#{key}=#{queries[key]}"
+        # add oauth_signature, except when that flag is false
+        unless include_oauth_signature == false &&  key == 'oauth_signature'  
+          arr << "#{key}=#{queries[key]}"
+        end   
       end
-      string = "?"
+      string = ""
       string << arr.join('&')
       string  
     end 
@@ -148,9 +160,10 @@ module NetflixDogs
     # still needs all the oauth type packaging. So below are the 
     # methods for constructing the oauth security, less the token 
     
-    def send_request 
-      # do something ... 
-    end
+    def send_non_auth_request 
+      sign 
+      Net::HTTP.get( URI.parse( url ) )
+    end 
     
     def auth_hash
       {
@@ -167,19 +180,35 @@ module NetflixDogs
       add_to_query( auth_hash ) 
     end
     
-    def signature
+    def sign 
       build_auth_query_string 
-      unless @signature
-        signature_key = URI.escape( "#{secret}&" )
-        signature_base_string = "GET&#{self.class.api_url}#{base_path}&#{query_path}"
-        @signature ||= Base64.encode64(
+      signature
+    end  
+    
+    def signature
+      @signature = Base64.encode64(
           HMAC::SHA1.digest( signature_key, signature_base_string )
-        ).chomp.gsub(/\n/,'')  
-      end
+        ).chomp.gsub(/\n/,'')
+      @signature = URI.escape( @signature, escape_these )
+      add_to_query({'oauth_signature' => @signature})  
       @signature
     end
     
+    def signature_key(access_token=nil) 
+      "#{secret}&#{access_token}"
+    end
+    
+    def signature_base_string
+      encoded_url = URI.escape( "#{self.class.api_url}/#{base_path}", escape_these )
+      encoded_params = URI.escape( query_string, escape_these )
+      "GET&#{encoded_url}&#{encoded_params}"
+    end     
+    
     private
+      def escape_these
+        /[^A-Za-z0-9\-\._~]/
+      end
+      
       def timestamp
         Time.now.to_i 
       end
