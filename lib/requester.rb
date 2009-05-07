@@ -1,6 +1,6 @@
 module NetflixDogs
-  # This class could be broken into Authentication stuff and Request stuff, but
-  # they would be calling each other in very spaghetti ways
+  # This class *could* be broken into Authentication stuff and Request stuff, but
+  # the two classes would be calling each other in very spaghetti ways, so ...
   class Requester 
     attr_accessor :base_path, :queries 
     attr_writer   :signature
@@ -9,7 +9,7 @@ module NetflixDogs
     # I N I T I A L I Z E -------------------------------
     def initialize( path )
       self.base_path = path
-      self.queries = {}
+      self.queries = HashWithIndifferentAccess.new
     end 
     
     # G O -----------------------------------------------
@@ -94,7 +94,7 @@ module NetflixDogs
     end
     
     def query_path # does not include the api_url
-      base_path + '?' +query_string
+      base_path + '?' + query_string
     end
     
     def query_string(include_oauth_signature=true)
@@ -112,7 +112,7 @@ module NetflixDogs
     
     def add_to_query( query_hash )
       query_hash.each do |key, value|
-        self.queries[key] = URI.escape(value.to_s)
+        self.queries[key] = URI.escape(value.to_s, escape_these)
       end
     end
     
@@ -189,7 +189,7 @@ module NetflixDogs
       @signature = Base64.encode64(
           HMAC::SHA1.digest( signature_key, signature_base_string )
         ).chomp.gsub(/\n/,'')
-      @signature = URI.escape( @signature, escape_these )
+      #@signature = URI.escape( @signature, escape_these )
       add_to_query({'oauth_signature' => @signature})  
       @signature
     end

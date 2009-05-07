@@ -13,13 +13,16 @@
 require 'rubygems'
 require 'irb'
 
-$:.unshift(File.dirname(__FILE__) + '/../lib')
-
-RAILS_ROOT = File.join( File.dirname(__FILE__), '..' )
-require 'netflix_dogs'
 $:.unshift(File.dirname(__FILE__) + '/../../flix4r' )
 require 'flix4r' # for comparison
 
+$:.unshift(File.dirname(__FILE__) + '/../lib')
+
+RAILS_ROOT = File.join( File.dirname(__FILE__), '..' )
+require 'netflix_dogs' 
+
+# load real netflix credentials to test how it really works
+NetflixDogs::Requester.config_location = RAILS_ROOT + '/config/real_netflix.yml'
 
 # start the conole with these variables
 IRB.start if __FILE__ == $0     

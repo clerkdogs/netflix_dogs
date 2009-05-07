@@ -60,13 +60,23 @@ describe NetflixDogs::Requester do
   end     
   
   describe 'parameter packaging' do 
-    it 'should be able to encode query string from a hash' do 
+    it 'should build query string from a hash' do 
       @requester.add_to_query(
         'pizza' => 'good',
         'beer' => 'plenty'
       ) 
       @requester.query_string.should == 'beer=plenty&pizza=good'
-    end
+    end 
+    
+    it 'should build query string with our without the oauth_signature' do
+      @requester.add_to_query(
+        'pizza' => 'good',
+        'beer' => 'plenty',
+        'oauth_signature' => 'yup_im_signed!'
+      )
+      @requester.query_string.should include( 'oauth_signature')
+      @requester.query_string( false ).should_not include( 'oauth_signature' )
+    end  
     
     it 'should have a query path' do
       @requester.add_to_query( 
@@ -127,33 +137,50 @@ describe NetflixDogs::Requester do
       @requester.signature.should_not be_nil
     end
     
-    # Sample parameters taken from flix4r, which builds this kind of auth!
-    #
-    # {
-    #  "oauth_nonce"=>37137, 
-    #  "term"=>"sneakers", 
-    #  "max_result"=>2, 
-    #  "oauth_signature_method"=>"HMAC-SHA1", 
-    #  "oauth_timestamp"=>1241641821, 
-    #  "oauth_consumer_key"=>"my_big_key", 
-    #  "oauth_signature"=>"v21tQ73vXqNFlmQCCXW9wrPlHMs%3D", 
-    #  "oauth_version"=>"1.0"
-    # }    
+    
+    describe 'authentication calculations' do 
+      # Sample parameters taken from flix4r, which builds this kind of auth!
+      #
+      # {
+      #  "oauth_nonce"=>37137, 
+      #  "term"=>"sneakers", 
+      #  "max_result"=>2, 
+      #  "oauth_signature_method"=>"HMAC-SHA1", 
+      #  "oauth_timestamp"=>1241641821, 
+      #  "oauth_consumer_key"=>"my_big_key", 
+      #  "oauth_signature"=>"BaX9f5cXTu1B1pKA5b9md61axak%3D", 
+      #  "oauth_version"=>"1.0"
+      # }     
       
-    it 'should create the correct signature' do
-      @requester.base_path = 'catalog/titles'
-      @requester.queries = { 
-        'max_result' => '2',
-        'oauth_consumer_key' => 'my_big_key',
-        'oauth_nonce' => '37137',
-        'oauth_signature_method' => 'HMAC-SHA1',
-        'oauth_timestamp' => '1241641821',
-        'oauth_version' => '1.0',
-        'term'=> 'sneakers'
-      }
-      @requester.signature_key.should == "uber_secret&"
-      @requester.signature_base_string.should ==  "GET&http%3A%2F%2Fapi.netflix.com%2Fcatalog%2Ftitles&max_result%3D2%26oauth_consumer_key%3Dmy_big_key%26oauth_nonce%3D37137%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1241641821%26oauth_version%3D1.0%26term%3Dsneakers"
-      @requester.signature.should == 'BaX9f5cXTu1B1pKA5b9md61axak%3D'
+      before(:each) do
+        @requester.base_path = 'catalog/titles'
+        @requester.queries = { 
+          'max_result' => '2',
+          'oauth_consumer_key' => 'my_big_key',
+          'oauth_nonce' => '37137',
+          'oauth_signature_method' => 'HMAC-SHA1',
+          'oauth_timestamp' => '1241641821',
+          'oauth_version' => '1.0',
+          'term'=> 'sneakers'
+        }
+      end 
+      
+      it 'should have a correct signature_key' do 
+        @requester.signature_key.should == "uber_secret&" 
+      end   
+      
+      it 'should have a correct signature_base_string' do 
+        @requester.signature_base_string.should ==  "GET&http%3A%2F%2Fapi.netflix.com%2Fcatalog%2Ftitles&max_result%3D2%26oauth_consumer_key%3Dmy_big_key%26oauth_nonce%3D37137%26oauth_signature_method%3DHMAC-SHA1%26oauth_timestamp%3D1241641821%26oauth_version%3D1.0%26term%3Dsneakers"
+      end  
+      
+      it 'should create the correct signature' do
+        @requester.signature.should == 'BaX9f5cXTu1B1pKA5b9md61axak=' 
+      end
+      
+      it 'should have a correct url' do
+        @requester.signature
+        @requester.url.should == 'http://api.netflix.com/catalog/titles?max_result=2&oauth_consumer_key=my_big_key&oauth_nonce=37137&oauth_signature=BaX9f5cXTu1B1pKA5b9md61axak%3D&oauth_signature_method=HMAC-SHA1&oauth_timestamp=1241641821&oauth_version=1.0&term=sneakers'                               
+      end     
     end  
       
   end  
