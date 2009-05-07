@@ -22,7 +22,12 @@ RAILS_ROOT = File.join( File.dirname(__FILE__), '..' )
 require 'netflix_dogs' 
 
 # load real netflix credentials to test how it really works
-NetflixDogs::Requester.config_location = RAILS_ROOT + '/config/real_netflix.yml'
+NetflixDogs::Requester.config_location = RAILS_ROOT + '/config/real_netflix.yml' 
+
+# load also an xml file with Nokogiri 
+DATA =  File.join( File.dirname(__FILE__), '/data' )
+@xml = File.open( "#{DATA}/catalog/title_search.xml", 'r' ).read
+@parser = Nokogiri.XML(@xml) 
 
 # start the conole with these variables
 IRB.start if __FILE__ == $0     

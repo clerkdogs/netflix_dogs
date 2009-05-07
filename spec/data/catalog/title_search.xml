@@ -1,62 +1,61 @@
-<catalog_titles>  
-  <number_of_results>1140</number_of_results>  
-  <start_index>0</start_index>  
-  <results_per_page>10</results_per_page>  
-  <catalog_title>  
-    <id>http://api.netflix.com/catalog/titles/movies/60021896</id><title short="Star"    
-      regular="Star"></title>  
-    <box_art small="http://alien2.netflix.com/us/boxshots/tiny/60021896.jpg"    
-      medium="http://alien2.netflix.com/us/boxshots/small/60021896.jpg"    
-      large="http://alien2.netflix.com/us/boxshots/large/60021896.jpg"></box_art>  
-    <link href="http://api.netflix.com/catalog/titles/movies/60021896/synopsis"    
-      rel="http://schemas.netflix.com/catalog/titles/synopsis"  title="synopsis"></link>  
-    <release_year>2001</release_year>  
-    <category scheme="http://api.netflix.com/categories/mpaa_ratings"  label="NR"></category>  
-    <category scheme="http://api.netflix.com/categories/genres"  label="Foreign"></category>  
-    <link href="http://api.netflix.com/catalog/titles/movies/60021896/cast"    
-      rel="http://schemas.netflix.com/catalog/people.cast"  title="cast"></link>  
-    <link href="http://api.netflix.com/catalog/titles/movies/60021896/directors"    
-      rel="http://schemas.netflix.com/catalog/people.directors"  title="directors"></link>  
-    <link href="http://api.netflix.com/catalog/titles/movies/60021896/format_availability"    
-      rel="http://schemas.netflix.com/catalog/titles/format_availability"  title="formats"></link>  
-    <link href="http://api.netflix.com/catalog/titles/movies/60021896/screen_formats"  
-      rel="http://schemas.netflix.com/catalog/titles/screen_formats"  title="screen  formats"></link  
-    <link href="http://api.netflix.com/catalog/titles/movies/60021896/languages_and_audio"
-      rel="http://schemas.netflix.com/catalog/title/languages_and_audio"  
-      title="languages  and audio"></link>  
-    <average_rating>1.9</average_rating>  
-    <link href="http://api.netflix.com/catalog/titles/movies/60021896/similars"  
-      rel="http://schemas.netflix.com/catalog/titles.similars"  title="similars"></link>  
-    <link href="http://www.netflix.com/Movie/Star/60021896"  rel="alternate"  title="webpage"></link>  
-  </catalog_title>  
-  <catalog_title>  
-    <id>http://api.netflix.com/catalog/titles/movies/17985448</id> 
-    <title short="Lone  Star" regular="Lone Star"></title>  
-    <box_art small="http://alien2.netflix.com/us/boxshots/tiny/17985448.jpg"  
-    medium="http://alien2.netflix.com/us/boxshots/small/17985448.jpg"  
-    large="http://alien2.netflix.com/us/boxshots/large/17985448.jpg"></box_art>  
-    <link href="http://api.netflix.com/catalog/titles/movies/17985448/synopsis" 
-      rel="http://schemas.netflix.com/catalog/titles/synopsis"  title="synopsis"></link>  
-    <release_year>1996</release_year>  
-    <category scheme="http://api.netflix.com/categories/mpaa_ratings"  label="R"></category>  
-    <category scheme="http://api.netflix.com/categories/genres"  label="Drama"></category>  
-    <link href="http://api.netflix.com/catalog/titles/movies/17985448/cast" 
-      rel="http://schemas.netflix.com/catalog/people.cast"  title="cast"></link>  
-    <link href="http://api.netflix.com/catalog/titles/movies/17985448/directors"
-     rel="http://schemas.netflix.com/catalog/people.directors"  title="directors"></link>  
-    <link href="http://api.netflix.com/catalog/titles/movies/17985448/awards"
-      rel="http://schemas.netflix.com/catalog/titles/awards"  title="awards"></link>  
-    <link href="http://api.netflix.com/catalog/titles/movies/17985448/format_availability"
-     rel="http://schemas.netflix.com/catalog/titles/format_availability"  title="formats"></link>  
-    <link href="http://api.netflix.com/catalog/titles/movies/17985448/screen_formats"
-     rel="http://schemas.netflix.com/catalog/titles/screen_formats"  title="screen  formats"></link>  
-    <link href="http://api.netflix.com/catalog/titles/movies/17985448/languages_and_audio"
-     rel="http://schemas.netflix.com/catalog/titles/languages_and_audio"
-     title="languages  and audio"></link>  
-    <average_rating>3.7</average_rating> 
-    <link href="http://api.netflix.com/catalog/titles/movies/17985448/similars"
-      rel="http://schemas.netflix.com/catalog/titles.similars"  title="similars"></link>  
-    <link href="http://www.netflix.com/Movie/Lone_Star/17985448"  rel="alternate"
-      title="webpage"></link>  
-  </catalog_title>  
+<?xml version="1.0" standalone="yes"?>
+
+<catalog_titles>
+  <link href="http://api.netflix.com/catalog/titles/index" rel="http://schemas.netflix.com/catalog/titles/index" title="index"></link>
+  <link href="http://api.netflix.com/catalog/titles/autocomplete" rel="http://schemas.netflix.com/catalog/titles/autocomplete" title="autocomplete"></link>
+  <url_template>http://api.netflix.com/catalog/titles?{-join|&amp;|term|start_index|max_results}</url_template>
+  <number_of_results>1101</number_of_results>
+  <start_index>2</start_index>
+  <results_per_page>2</results_per_page>
+  <catalog_title>
+    <id>http://api.netflix.com/catalog/titles/movies/319022</id><title short="Blue Velvet" regular="Blue Velvet"></title>
+<box_art small="http://cdn-2.nflximg.com/us/boxshots/tiny/319022.jpg" medium="http://cdn-2.nflximg.com/us/boxshots/small/319022.jpg" large="http://cdn-2.nflximg.com/us/boxshots/large/319022.jpg"></box_art>
+<link href="http://api.netflix.com/catalog/titles/movies/319022/synopsis" rel="http://schemas.netflix.com/catalog/titles/synopsis" title="synopsis"></link>
+<release_year>1986</release_year>
+<category scheme="http://api.netflix.com/categories/mpaa_ratings" label="R" term="R"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Drama" term="Drama"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Mystery" term="Mystery"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Suspense" term="Suspense"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Indie Dramas" term="Indie Dramas"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Indie Suspense &amp; Thriller" term="Indie Suspense &amp; Thriller"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Fox Home Entertainment" term="Fox Home Entertainment"></category>
+<runtime>7260</runtime>
+<link href="http://api.netflix.com/catalog/titles/movies/319022/cast" rel="http://schemas.netflix.com/catalog/people.cast" title="cast"></link>
+<link href="http://api.netflix.com/catalog/titles/movies/319022/directors" rel="http://schemas.netflix.com/catalog/people.directors" title="directors"></link>
+<link href="http://api.netflix.com/catalog/titles/movies/319022/format_availability" rel="http://schemas.netflix.com/catalog/titles/format_availability" title="formats"></link>
+<link href="http://api.netflix.com/catalog/titles/movies/319022/awards" rel="http://schemas.netflix.com/catalog/titles/awards" title="awards"></link>
+<link href="http://api.netflix.com/catalog/titles/movies/319022/screen_formats" rel="http://schemas.netflix.com/catalog/titles/screen_formats" title="screen formats"></link>
+<link href="http://api.netflix.com/catalog/titles/movies/319022/languages_and_audio" rel="http://schemas.netflix.com/catalog/titles/languages_and_audio" title="languages and audio"></link>
+<average_rating>3.4</average_rating>
+<link href="http://api.netflix.com/catalog/titles/movies/319022/similars" rel="http://schemas.netflix.com/catalog/titles.similars" title="similars"></link>
+<link href="http://www.netflix.com/Movie/Blue_Velvet/319022" rel="alternate" title="web page"></link>
+
+  </catalog_title>
+  <catalog_title>
+    <id>http://api.netflix.com/catalog/titles/movies/5670345</id><title short="Velvet Goldmine" regular="Velvet Goldmine"></title>
+<box_art small="http://cdn-5.nflximg.com/us/boxshots/tiny/5670345.jpg" medium="http://cdn-5.nflximg.com/us/boxshots/small/5670345.jpg" large="http://cdn-5.nflximg.com/us/boxshots/large/5670345.jpg"></box_art>
+<link href="http://api.netflix.com/catalog/titles/movies/5670345/synopsis" rel="http://schemas.netflix.com/catalog/titles/synopsis" title="synopsis"></link>
+<release_year>1998</release_year>
+<category scheme="http://api.netflix.com/categories/mpaa_ratings" label="R" term="R"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Drama" term="Drama"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Indie Dramas" term="Indie Dramas"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Contemporary Movie Musicals" term="Contemporary Movie Musicals"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Musicals" term="Musicals"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Period Pieces" term="Period Pieces"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="20th Century Period Pieces" term="20th Century Period Pieces"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Gay &amp; Lesbian" term="Gay &amp; Lesbian"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Bisexual" term="Bisexual"></category>
+<category scheme="http://api.netflix.com/categories/genres" label="Miramax" term="Miramax"></category>
+<runtime>7620</runtime>
+<link href="http://api.netflix.com/catalog/titles/movies/5670345/cast" rel="http://schemas.netflix.com/catalog/people.cast" title="cast"></link>
+<link href="http://api.netflix.com/catalog/titles/movies/5670345/directors" rel="http://schemas.netflix.com/catalog/people.directors" title="directors"></link>
+<link href="http://api.netflix.com/catalog/titles/movies/5670345/format_availability" rel="http://schemas.netflix.com/catalog/titles/format_availability" title="formats"></link>
+<link href="http://api.netflix.com/catalog/titles/movies/5670345/awards" rel="http://schemas.netflix.com/catalog/titles/awards" title="awards"></link>
+<link href="http://api.netflix.com/catalog/titles/movies/5670345/screen_formats" rel="http://schemas.netflix.com/catalog/titles/screen_formats" title="screen formats"></link>
+<link href="http://api.netflix.com/catalog/titles/movies/5670345/languages_and_audio" rel="http://schemas.netflix.com/catalog/titles/languages_and_audio" title="languages and audio"></link>
+<average_rating>3.3</average_rating>
+<link href="http://api.netflix.com/catalog/titles/movies/5670345/similars" rel="http://schemas.netflix.com/catalog/titles.similars" title="similars"></link>
+<link href="http://www.netflix.com/Movie/Velvet_Goldmine/5670345" rel="alternate" title="web page"></link>
+
+  </catalog_title>
 </catalog_titles>

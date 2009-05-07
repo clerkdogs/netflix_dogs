@@ -1,7 +1,7 @@
 <people>  
   <number_of_results>1452</number_of_results>  
   <start_index>0</start_index>  
-  results_per_page>2</results_per_page>  
+  <results_per_page>2</results_per_page>  
   <person>  
     <id>http://api.netflix.com/catalog/people/152672</id>  
     <name>Pen&#233;lope  Cruz</name>  
