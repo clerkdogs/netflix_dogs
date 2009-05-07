@@ -21,13 +21,15 @@ describe NetflixDogs::Catalog do
       
     describe 'class method #search' do
       it 'should set the base path to \'catalog/titles\'' do
-        requester = NetflixDogs::Requester.new('catalog/titles') 
+        requester = NetflixDogs::Requester.new('catalog/titles')
+        requester.stub!(:go).and_return("<?xml") # so that the request doesn't actually go through
         NetflixDogs::Requester.should_receive(:new).with('catalog/titles').and_return(requester)
         NetflixDogs::Title.search('Blue Velvet')
       end
         
       it 'should set max_results option in query_string' do 
         requester = NetflixDogs::Requester.new('catalog/titles') 
+        requester.stub!(:go).and_return("<?xml") # so that the request doesn't actually go through
         NetflixDogs::Requester.should_receive(:new).with('catalog/titles').and_return(requester)
         NetflixDogs::Title.search('Blue Velvet')
         requester.query_string.should match(/max_results=10/) 
@@ -35,6 +37,7 @@ describe NetflixDogs::Catalog do
         
       it 'should set start_index option in query_string' do 
         requester = NetflixDogs::Requester.new('catalog/titles') 
+        requester.stub!(:go).and_return("<?xml") # so that the request doesn't actually go through
         NetflixDogs::Requester.should_receive(:new).with('catalog/titles').and_return(requester)
         NetflixDogs::Title.search('Blue Velvet')
         requester.query_string.should match(/start_index=0/)
@@ -42,6 +45,7 @@ describe NetflixDogs::Catalog do
         
       it 'should set the escaped title to \'term\' in the query_string' do
         requester = NetflixDogs::Requester.new('catalog/titles') 
+        requester.stub!(:go).and_return("<?xml") # so that the request doesn't actually go through
         NetflixDogs::Requester.should_receive(:new).with('catalog/titles').and_return(requester)
         NetflixDogs::Title.search('Blue Velvet')
         requester.query_string.should match(/term=Blue%20Velvet/)
@@ -49,6 +53,7 @@ describe NetflixDogs::Catalog do
       
       it 'should customize the options' do 
         requester = NetflixDogs::Requester.new('catalog/titles') 
+        requester.stub!(:go).and_return("<?xml") # so that the request doesn't actually go through
         NetflixDogs::Requester.should_receive(:new).with('catalog/titles').and_return(requester)
         NetflixDogs::Title.search('Blue Velvet', {'start_index' => '15', 'max_results' => 20})
         requester.query_string.should match(/start_index=15/)
@@ -59,12 +64,14 @@ describe NetflixDogs::Catalog do
     describe 'class method #autocomplete' do
       it 'should set the base path to \'catalog/titles/autocomplete\'' do 
         requester = NetflixDogs::Requester.new('catalog/titles/autocomplete') 
+        requester.stub!(:go).and_return("<?xml") # so that the request doesn't actually go through
         NetflixDogs::Requester.should_receive(:new).with('catalog/titles/autocomplete').and_return(requester)
         NetflixDogs::Title.autocomplete('Blue Velv') 
       end
         
       it 'should set the escaped title to \'term\' in the query_string' do 
         requester = NetflixDogs::Requester.new('catalog/titles/autocomplete') 
+        requester.stub!(:go).and_return("<?xml") # so that the request doesn't actually go through
         NetflixDogs::Requester.should_receive(:new).with('catalog/titles/autocomplete').and_return(requester)
         NetflixDogs::Title.autocomplete('Blue Velv')
         requester.query_string.should match(/term=Blue%20Velv/)  
@@ -75,12 +82,14 @@ describe NetflixDogs::Catalog do
     describe 'class method #list' do  
       it 'should set the base path to \'catalog/titles/index\'' do 
         requester = NetflixDogs::Requester.new('catalog/titles/index') 
+        requester.stub!(:go).and_return("<?xml") # so that the request doesn't actually go through
         NetflixDogs::Requester.should_receive(:new).with('catalog/titles/index').and_return(requester)
         NetflixDogs::Title.list
       end
         
       it 'should set the include_amg option in the query_string' do
         requester = NetflixDogs::Requester.new('catalog/titles/index') 
+        requester.stub!(:go).and_return("<?xml") # so that the request doesn't actually go through
         NetflixDogs::Requester.should_receive(:new).with('catalog/titles/index').and_return(requester)
         NetflixDogs::Title.list
         requester.query_string.should match(/include_amg=0/)  
@@ -88,6 +97,7 @@ describe NetflixDogs::Catalog do
         
       it 'should set the include_tms option in the query_string' do 
         requester = NetflixDogs::Requester.new('catalog/titles/index') 
+        requester.stub!(:go).and_return("<?xml") # so that the request doesn't actually go through
         NetflixDogs::Requester.should_receive(:new).with('catalog/titles/index').and_return(requester)
         NetflixDogs::Title.list
         requester.query_string.should match(/include_tms=0/) 
@@ -95,6 +105,7 @@ describe NetflixDogs::Catalog do
       
       it 'should allow customization of options' do 
         requester = NetflixDogs::Requester.new('catalog/titles/index') 
+        requester.stub!(:go).and_return("<?xml") # so that the request doesn't actually go through
         NetflixDogs::Requester.should_receive(:new).with('catalog/titles/index').and_return(requester)
         NetflixDogs::Title.list({'include_amg' => true, 'include_tms' => true})
         requester.query_string.should match(/include_tms=1/)
@@ -111,7 +122,7 @@ describe NetflixDogs::Catalog do
       end  
       
       it 'should be successful' do 
-        NetflixDogs::Title.search( 'Blue Velvet' )  
+        lambda{ NetflixDogs::Title.search( 'Blue Velvet' ) }.should_not raise_error  
       end
         
     end   
