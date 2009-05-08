@@ -1,4 +1,6 @@
 require 'rubygems'
+
+# external dependencies
 require 'activesupport'
 require 'uri'
 require 'net/http'
@@ -10,7 +12,9 @@ $:.unshift(File.dirname(__FILE__))
 
 # load library
 require 'requester'
-require 'catalog'
+require 'searcher'
+require 'catalog/catalog'
+require 'catalog/title'
 require 'parsers/set'
 require 'parsers/member'
 
@@ -24,6 +28,4 @@ class OpenStruct
     reserved =  OpenStruct.new.methods 
     self.methods.select{ |method| !reserved.include?( method ) && !method.match('=') }  
   end
- 
-end   
- 
+end 

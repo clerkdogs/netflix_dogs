@@ -1,26 +1,4 @@
 module NetflixDogs
-  class Catalog 
-    # uses application level authentication, no access_token required
-    # so lots of extra coding is used in the Requester object
-    attr_accessor :requester, :results
-    
-    def initialize( base_path )
-      self.requester = Requester.new( base_path )
-    end
-    
-    def go( hash )
-      requester.add_to_query( hash ) 
-      self.results = requester.go( :catalog ) 
-      results_valid?
-      Parser::Set.new( results )
-    end
-    
-    def results_valid?
-      raise AuthenticationError, results.inspect unless results.include?( "<?xml" )
-    end     
-  
-  end  
-  
   class Title < Catalog
     # CLASS FIND METHODS ==================
     def self.search( title, opts={} )
@@ -58,5 +36,5 @@ module NetflixDogs
       'catalog/titles/index'
     end
                
-  end # Title  
-end  # NetflixDogs
+  end # Title
+end # NetflixDogs    
