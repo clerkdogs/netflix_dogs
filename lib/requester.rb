@@ -2,7 +2,7 @@ module NetflixDogs
   # This class *could* be broken into Authentication stuff and Request stuff, but
   # the two classes would be calling each other in very spaghetti ways, so ...
   class Requester 
-    attr_accessor :base_path, :queries 
+    attr_accessor :base_path, :queries, :user 
     attr_writer   :signature
     cattr_accessor :key, :secret
     
@@ -13,9 +13,9 @@ module NetflixDogs
     end 
     
     # G O -----------------------------------------------
-    def go( type=:user )
-      if type == :user
-        # do some oauth stuff
+    def go( type=:catalog, u=nil )
+      if type == :user    
+        send_auth_request( u )
       else 
         send_non_auth_request
       end    
@@ -139,6 +139,10 @@ module NetflixDogs
     # and is stored in the database with request token information and access secret.
     # All of this is handled by the oauth gem. But it is nice to know what is going
     # on behind the scenes.
+    def send_auth_request( u )
+      raise ArgumentError, "A user must be provided for " unless u 
+      self.user = u
+    end
     
     def oauth_gateway( key=self.key, secret=self.secret)
       OAuth::Consumer.new(

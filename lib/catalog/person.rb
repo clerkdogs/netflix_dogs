@@ -1,5 +1,5 @@
 module NetflixDogs
-  class Person < Catalog 
+  class Person < CatalogSearcher 
     
     # CLASS FIND METHODS ==================
     def self.search( name, opts={} )

@@ -1,5 +1,5 @@
 module NetflixDogs
-  class Title < Catalog
+  class Title < CatalogSearcher
     # CLASS FIND METHODS ==================
     def self.search( title, opts={} )
       searcher = new( search_base_path )

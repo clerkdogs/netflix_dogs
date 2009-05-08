@@ -1,6 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 
-describe NetflixDogs::Catalog do
+describe NetflixDogs::CatalogSearcher do
   before(:each) do
     @title = NetflixDogs::Title.new( 'base_path' ) 
   end

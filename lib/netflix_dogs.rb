@@ -13,11 +13,13 @@ $:.unshift(File.dirname(__FILE__))
 # load library
 require 'requester'
 require 'searcher'
-require 'catalog/catalog'
-require 'catalog/title'
-require 'catalog/person'
 require 'parsers/set'
 require 'parsers/member'
+require 'catalog/catalog_searcher'
+require 'catalog/title'
+require 'catalog/person'
+require 'user/user_searcher'
+require 'user/queue'
 
 module NetflixDogs
   class AuthenticationError < SecurityError
