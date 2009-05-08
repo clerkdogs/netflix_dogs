@@ -26,6 +26,6 @@ end
 class OpenStruct 
   def attributes 
     reserved =  OpenStruct.new.methods 
-    self.methods.select{ |method| !reserved.include?( method ) && !method.match('=') }  
+    self.methods.select{ |method| !reserved.include?( method ) && !method.match('=') }.sort  
   end
 end 

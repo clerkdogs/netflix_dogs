@@ -99,11 +99,57 @@ describe NetflixDogs::Title do
   end
 
   describe 'class method #find' do
-    # id provided on a previous call
+    # id provided on a previous call 
+    before(:each) do
+      # stubbing the actual request and the parsing 
+      @requester = NetflixDogs::Requester.new('catalog/titles/movies')
+      @xml = File.open( "#{DATA}/catalog/movie_detail.xml", 'r' ).read   
+    end
+    
+    it 'should request details on a movie given an id' do 
+      NetflixDogs::Parser::Member.stub!( :new ).and_return( nil )
+      NetflixDogs::Requester.should_receive(:new).with('catalog/titles/series/70023522/seasons/70023522').and_return(@requester)
+      @requester.stub!(:go).and_return("<?xml")
+      
+      NetflixDogs::Title.find( 'http://api.netflix.com/catalog/titles/series/70023522/seasons/70023522' )
+    end
+    
+    it 'should return a member parser' do
+      NetflixDogs::Requester.should_receive(:new).with('catalog/titles/series/70023522/seasons/70023522').and_return(@requester)
+      @requester.stub!(:go).and_return( @xml )
+      
+      details = NetflixDogs::Title.find( 'http://api.netflix.com/catalog/titles/series/70023522/seasons/70023522' )
+      details.class.should == NetflixDogs::Parser::Member
+    end
   end
   
   describe 'class method #similar' do 
     # id provided on a previous call
+    before(:each) do
+      # stubbing the actual request and the parsing 
+      @requester = NetflixDogs::Requester.new('catalog/titles/movies')
+      @requester.stub!(:go).and_return("<?xml") 
+      NetflixDogs::Parser::Set.stub!( :new ).and_return( nil )
+    end 
+    
+    it 'should request a list of similar titles on a given id' do
+      NetflixDogs::Requester.should_receive(:new).with('catalog/titles/series/70023522/seasons/70023522/similars').and_return(@requester)
+      NetflixDogs::Title.similar( 'http://api.netflix.com/catalog/titles/series/70023522/seasons/70023522' )
+    end
+    
+    it 'should have pagination defaults' do 
+      NetflixDogs::Requester.should_receive(:new).with('catalog/titles/series/70023522/seasons/70023522/similars').and_return(@requester)
+      NetflixDogs::Title.similar( 'http://api.netflix.com/catalog/titles/series/70023522/seasons/70023522' )
+      @requester.query_string.should match(/start_index=0/)
+      @requester.query_string.should match(/max_results=10/)
+    end  
+    
+    it 'should customize the options' do 
+      NetflixDogs::Requester.should_receive(:new).with('catalog/titles/series/70023522/seasons/70023522/similars').and_return(@requester)
+      NetflixDogs::Title.similar( 'http://api.netflix.com/catalog/titles/series/70023522/seasons/70023522', {'start_index' => '15', 'max_results' => 20} )
+      @requester.query_string.should match(/start_index=15/)
+      @requester.query_string.should match(/max_results=20/)
+    end 
   end                
      
 end
