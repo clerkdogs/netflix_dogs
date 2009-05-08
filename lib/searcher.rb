@@ -13,7 +13,11 @@ module NetflixDogs
     
     def results_valid?
       raise AuthenticationError, results.inspect unless results.include?( "<?xml" )
-    end     
-  
+    end 
+    
+    def self.parse_url_id( url_id  )
+        url_id.gsub( "#{Requester.api_url}/" , '') # remove api url from request
+    end 
+    
   end # Catalog  
 end  # NetflixDogs     

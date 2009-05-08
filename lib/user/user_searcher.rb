@@ -1,5 +1,11 @@
 module NetflixDogs
-  class UserSearcher < Searcher
+  class UserSearcher < Searcher 
+    
+    def initialize( path, user )
+      super( path )
+      self.requester.user = user
+    end  
+    
     def go( hash={}, set=true )
       requester.add_to_query( hash ) 
       self.results = requester.go( :user, u ) 

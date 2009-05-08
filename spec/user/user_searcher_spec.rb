@@ -1,29 +1,37 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 
 describe NetflixDogs::UserSearcher do
-  before(:each) do 
-    @queue = NetflixDogs::Queue.new( 'base_path' ) 
+  before(:each) do
+    @user_data = NetflixDogs::UserData.new(
+      :netflix_id => '1'
+    ) 
+    @user = NetflixDogs::User.new( 'base_path', @user_data ) 
   end
 
-  # describe 'basics' do
-  #   it 'should have a requester' do 
-  #     @title.requester.class.should == NetflixDogs::Requester
-  #   end 
-  #   
-  #   describe 'request' do
-  #     # for these tests you need to have a Netflix API key and add that data to the 
-  #     # real_netflix.yml file 
-  #     before(:each) do
-  #       NetflixDogs::Requester.config_location = RAILS_ROOT + '/config/real_netflix.yml'
-  #       NetflixDogs::Requester.load_credentials 
-  #     end  
-  #     
-  #     it 'should be successful' do
-  #       pending # turn this on as needed to avoid slamming Netflix repeatedly 
-  #       lambda{ NetflixDogs::Title.search( 'Blue Velvet' ) }.should_not raise_error  
-  #     end
-  #   end 
-  #   
+  it 'should have a requester' do 
+    @user.requester.class.should == NetflixDogs::Requester
+  end 
+  
+  it 'requester should have a user' do 
+   @user.requester.user.should_not be_nil 
+  end
+  
+  describe 'request' do
+    # for these tests you need to have a Netflix API key and add that data to the 
+    # real_netflix.yml file 
+    before(:each) do
+      NetflixDogs::Requester.config_location = RAILS_ROOT + '/config/real_netflix.yml'
+      NetflixDogs::Requester.load_credentials 
+    end  
+    
+    it 'should be successful' do
+      pending # turn this on as needed to avoid slamming Netflix repeatedly 
+      lambda{ 
+        NetflixDogs::User.find( @user_data.user_id ) 
+      }.should_not raise_error  
+    end
+  end 
+
   #   describe 'results' do 
   #     before(:each) do
   #       @xml = File.open( "#{DATA}/catalog/title_search.xml", 'r' ).read
@@ -55,6 +63,5 @@ describe NetflixDogs::UserSearcher do
   #       @results.first.title.short.should == "Blue Velvet"
   #     end  
   #   end        
-  # end            
      
 end                            

@@ -10,7 +10,7 @@ require 'ostruct'
 
 $:.unshift(File.dirname(__FILE__)) 
 
-# load library
+# this library
 require 'requester'
 require 'searcher'
 require 'parsers/set'
@@ -20,6 +20,8 @@ require 'catalog/title'
 require 'catalog/person'
 require 'user/user_searcher'
 require 'user/queue'
+require 'user/user'
+require 'user/user_data'
 
 module NetflixDogs
   class AuthenticationError < SecurityError
