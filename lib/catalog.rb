@@ -12,7 +12,7 @@ module NetflixDogs
       requester.add_to_query( hash ) 
       self.results = requester.go( :catalog ) 
       results_valid?
-      
+      Parser::Set.new( results )
     end
     
     def results_valid?
