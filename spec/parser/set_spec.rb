@@ -51,7 +51,18 @@ describe NetflixDogs::Parser::Set do
   describe 'members' do 
     it 'should find all members' do  
       @set.members.size.should == 2
+    end
+    
+    it 'should be an array like object of Member objects' do
+      @set.each do |member| 
+        member.class.should == NetflixDogs::Parser::Member
+      end  
+    end
+    
+    it 'each should have accessible attributes and values' do
+      @set.first.genres.first.label.should == "Drama"
     end  
+        
   end  
     
 end  

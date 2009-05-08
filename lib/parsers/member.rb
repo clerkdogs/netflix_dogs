@@ -15,8 +15,7 @@
 #   information about the scheme, which is a url. In most cases the important information in the url is the 
 #   last term.    
 #
-# The Member model allows lazy parsing for massive data sets or situations where only a small 
-# amount of the actual data is needed. Lazy loading is turned on by default.
+# The Member model is a lazy parser with the expectation that you won't need all the data passed back. 
 # Future iterations can also parse the file for those situations where the majority of 
 # the information passed in xml is needed.
 

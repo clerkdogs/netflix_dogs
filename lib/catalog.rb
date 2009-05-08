@@ -2,7 +2,7 @@ module NetflixDogs
   class Catalog 
     # uses application level authentication, no access_token required
     # so lots of extra coding is used in the Requester object
-    attr_accessor :requester, :results 
+    attr_accessor :requester, :results
     
     def initialize( base_path )
       self.requester = Requester.new( base_path )
@@ -12,6 +12,7 @@ module NetflixDogs
       requester.add_to_query( hash ) 
       self.results = requester.go( :catalog ) 
       results_valid?
+      
     end
     
     def results_valid?

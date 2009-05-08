@@ -11,6 +11,8 @@ module NetflixDogs
         self.xml = xml
         setup_parser
         add_pagination
+        parse
+        cleanup
       end
     
       def setup_parser
@@ -49,7 +51,25 @@ module NetflixDogs
     
       def members
         parser.search(member_type)
-      end       
+      end 
+      
+      # PARSE =============
+      # -------------------
+      def parse 
+        members.each do |xml_parser|
+          # this class is essentially an Array with extra stuff, so append values ...
+          self<< Member.new( xml_parser )
+        end
+        self  
+      end 
+      
+      # -------------------
+      
+      def cleanup
+        # to save on memory ...
+        # self.xml = nil
+        # self.parser = nil
+      end         
     
     end    
   end
