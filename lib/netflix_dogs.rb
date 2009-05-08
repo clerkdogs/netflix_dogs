@@ -15,6 +15,7 @@ require 'requester'
 require 'searcher'
 require 'catalog/catalog'
 require 'catalog/title'
+require 'catalog/person'
 require 'parsers/set'
 require 'parsers/member'
 

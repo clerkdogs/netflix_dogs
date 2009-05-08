@@ -62,6 +62,14 @@ describe NetflixDogs::Parser::Set do
     it 'each should have accessible attributes and values' do
       @set.first.genres.first.label.should == "Drama"
     end  
+    
+    it 'should find members when set has common, but irregular pluralization' do 
+      xml = File.open( "#{DATA}/catalog/person_search.xml", 'r' ).read
+      set = NetflixDogs::Parser::Set.new(xml)
+      set.type.should == 'people'
+      set.member_type.should == 'person'
+      set.members.size.should == 2 
+    end
         
   end  
     

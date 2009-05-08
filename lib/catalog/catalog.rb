@@ -14,5 +14,11 @@ module NetflixDogs
       end    
     end
     
+    private
+      def self.parse_url_id( url_id  )
+        url_id.gsub( "#{Requester.api_url}/" , '') # remove api url from request
+      end 
+    public
+
   end # Catalog  
 end  # NetflixDogs

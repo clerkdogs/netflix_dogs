@@ -38,22 +38,20 @@ module NetflixDogs
       }) 
     end
     
-    def self.parse_url_id( url_id  )
-      url_id.gsub( "#{Requester.api_url}/" , '') # remove api url from request
-    end      
+    # PATHS =========================== 
+    private
+      def self.search_base_path
+        'catalog/titles'
+      end
     
-    # CONSTANTS ===========================
-    def self.search_base_path
-      'catalog/titles'
-    end
+      def self.autocomplete_base_path
+        'catalog/titles/autocomplete'
+      end
     
-    def self.autocomplete_base_path
-      'catalog/titles/autocomplete'
-    end
-    
-    def self.list_base_path
-      'catalog/titles/index'
-    end
+      def self.list_base_path
+        'catalog/titles/index'
+      end 
+    public     
                
   end # Title
 end # NetflixDogs    

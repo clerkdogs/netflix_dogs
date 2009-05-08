@@ -1,10 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 
 describe NetflixDogs::Title do
-  before(:each) do
-    @title = NetflixDogs::Title.new( 'base_path' ) 
-  end
-
   describe 'class method #search' do 
     before(:each) do
       # stubbing the actual request and the parsing 
