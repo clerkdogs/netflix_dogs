@@ -93,7 +93,11 @@ module NetflixDogs
           set.send( "#{key}=", value.to_s )
         end
         set  
-      end         
+      end 
+      
+      def inspect
+        parser.inspect
+      end          
     
     end
   end

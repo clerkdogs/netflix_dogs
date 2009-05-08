@@ -16,7 +16,7 @@ module NetflixDogs
     end
     
     def results_valid?
-      raise AuthenticationError, results unless results.include?( "<?xml" )
+      raise AuthenticationError, results.inspect unless results.include?( "<?xml" )
     end     
   
   end  
