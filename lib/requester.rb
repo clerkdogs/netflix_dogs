@@ -147,24 +147,50 @@ module NetflixDogs
     # on behind the scenes.
     
     def send_auth_request
-      if user.netflix_valid?
+      if access_token
         puts 'netflix user is valid'
-        # package and send the request
-      elsif user.request_token 
+        # request the resource
+      elsif request_token
         # request an access_token
         puts 'no access token, but there is a request token'
+        @access_token = request_token.get_access_token
+        set_token_in_user( access_token, 'access' ) 
+        # request the original resource
       else
-        puts 'requesting request_token' 
         # request a request_token 
         # save the request_token in the user model with the request_token_secret  
-        self.request_token = oauth_gateway.get_request_token 
-        user.request_token = request_token.token
-        user.request_token_secret = request_token.secret
-        user.save
+        @request_token = oauth_gateway.get_request_token
+        set_token_in_user( request_token, 'request' ) 
         # return url for redirection 
         return oauth_authorization_url
       end    
+    end 
+    
+    def set_token_in_user( token, token_type )
+      unless token.nil?
+        user.send( "#{token_type}_token=", token.token )
+        user.send( "#{token_type}_token_secret=", token.secret )
+        user.save 
+      end  
+    end  
+    
+    def request_token
+      @request_token ||= OAuth::RequestToken.new( 
+        oauth_gateway , 
+        user.request_token, 
+        user.request_secret
+      ) if user && user.request_token 
+      @request_token
     end
+    
+    def access_token
+      @access_token ||= OAuth::AccessToken.new( 
+        oauth_gateway , 
+        user.request_token, 
+        user.request_secret
+      ) if user && user.access_token 
+      @access_token
+    end  
     
     def oauth_gateway( key=self.key, secret=self.secret)
       OAuth::Consumer.new(
@@ -181,23 +207,15 @@ module NetflixDogs
     end
     
     def oauth_authorization_url
-      request_token.authorize_url(
-        :oauth_token => request_token.token,
-        :oauth_consumer_key => key,
-        :application_name => self.class.application_name,
-        :oauth_callback => self.class.authorize_callback_url
-      ) 
+      if request_token
+        request_token.authorize_url(
+          :oauth_token => request_token.token,
+          :oauth_consumer_key => key,
+          :application_name => self.class.application_name,
+          :oauth_callback => self.class.authorize_callback_url
+        ) 
+      end  
     end
-    
-       
-    
-    # def access_token
-    #   unless @access_token
-    #     @access_token = user.request_token if user.valid?
-    #     @access_token = self.request_token.get_access_token  
-    #   end  
-    #   @access_token 
-    # end    
      
     
     # Userless-OAuth -------------------------------
