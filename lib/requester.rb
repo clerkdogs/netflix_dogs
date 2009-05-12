@@ -2,9 +2,9 @@ module NetflixDogs
   # This class *could* be broken into Authentication stuff and Request stuff, but
   # the two classes would be calling each other in very spaghetti ways, so ...
   class Requester 
-    attr_accessor :base_path, :queries, :user
+    attr_accessor :base_path, :queries, :user, :request_token, :access_token
     attr_writer   :signature
-    cattr_accessor :key, :secret
+    cattr_accessor :key, :secret, :application_name, :authorize_callback_url
     
     # I N I T I A L I Z E -------------------------------
     def initialize( path, user_object=nil )
@@ -91,8 +91,8 @@ module NetflixDogs
     end
 
     def self.authorization_url
-      @authorization_url ||=  "https://api.netflix.com/oauth/login" 
-    end 
+      @authorization_url ||=  "https://api-user.netflix.com/oauth/login" 
+    end
     
     # COMMON PARAMS/QUERY PARSING METHODS
     def url # includes the api_url
@@ -153,16 +153,16 @@ module NetflixDogs
       elsif user.request_token 
         # request an access_token
         puts 'no access token, but there is a request token'
-      else 
-        puts 'requesting request_token'
+      else
+        puts 'requesting request_token' 
         # request a request_token 
         # save the request_token in the user model with the request_token_secret  
-        request_token = oauth_gateway.get_request_token 
+        self.request_token = oauth_gateway.get_request_token 
         user.request_token = request_token.token
         user.request_token_secret = request_token.secret
         user.save
-        
-         
+        # return url for redirection 
+        return oauth_authorization_url
       end    
     end
     
@@ -180,13 +180,24 @@ module NetflixDogs
       )  
     end
     
-    def access_token
-      unless @access_token
-        @access_token = user.request_token if user.valid?
-        @access_token = self.request_token.get_access_token  
-      end  
-      @access_token 
+    def oauth_authorization_url
+      request_token.authorize_url(
+        :oauth_token => request_token.token,
+        :oauth_consumer_key => key,
+        :application_name => self.class.application_name,
+        :oauth_callback => self.class.authorize_callback_url
+      ) 
     end
+    
+       
+    
+    # def access_token
+    #   unless @access_token
+    #     @access_token = user.request_token if user.valid?
+    #     @access_token = self.request_token.get_access_token  
+    #   end  
+    #   @access_token 
+    # end    
      
     
     # Userless-OAuth -------------------------------
@@ -224,7 +235,6 @@ module NetflixDogs
       @signature = Base64.encode64(
           HMAC::SHA1.digest( signature_key, signature_base_string )
         ).chomp.gsub(/\n/,'')
-      #@signature = URI.escape( @signature, escape_these )
       add_to_query({'oauth_signature' => @signature})  
       @signature
     end
