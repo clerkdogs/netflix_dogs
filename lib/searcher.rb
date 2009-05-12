@@ -3,8 +3,9 @@ module NetflixDogs
     
     attr_accessor :requester, :results
     
-    def initialize( base_path )
+    def initialize( base_path, user=nil )
       self.requester = Requester.new( base_path )
+      self.requester.user = user if user
     end
     
     def go( hash, set=true )

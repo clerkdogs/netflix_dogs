@@ -2,20 +2,26 @@ module NetflixDogs
   # This class *could* be broken into Authentication stuff and Request stuff, but
   # the two classes would be calling each other in very spaghetti ways, so ...
   class Requester 
-    attr_accessor :base_path, :queries, :user 
+    attr_accessor :base_path, :queries, :user
     attr_writer   :signature
     cattr_accessor :key, :secret
     
     # I N I T I A L I Z E -------------------------------
-    def initialize( path )
+    def initialize( path, user_object=nil )
       self.base_path = path
-      self.queries = HashWithIndifferentAccess.new
+      self.queries = HashWithIndifferentAccess.new 
+      if user_object
+        self.user = user_object
+        self.user.class.class_eval do 
+          include NetflixUserValidations
+        end  
+      end  
     end 
     
     # G O -----------------------------------------------
-    def go( type=:catalog, u=nil )
+    def go( type=:catalog )
       if type == :user    
-        send_auth_request( u )
+        send_auth_request
       else 
         send_non_auth_request
       end    
@@ -76,8 +82,8 @@ module NetflixDogs
       @signature_method ||= "HMAC-SHA1"
     end 
 
-    def self.request_token_url
-      @request_token_url ||= "https://api-user.netflix.com/oauth/request_token"
+    def self.request_token_url 
+      @request_token_url ||= "http://api.netflix.com/oauth/request_token"
     end
 
     def self.access_token_url
@@ -85,7 +91,7 @@ module NetflixDogs
     end
 
     def self.authorization_url
-      @authorization_url ||=  "https://api-user.netflix.com/oauth/login" 
+      @authorization_url ||=  "https://api.netflix.com/oauth/login" 
     end 
     
     # COMMON PARAMS/QUERY PARSING METHODS
@@ -139,9 +145,25 @@ module NetflixDogs
     # and is stored in the database with request token information and access secret.
     # All of this is handled by the oauth gem. But it is nice to know what is going
     # on behind the scenes.
-    def send_auth_request( u )
-      raise ArgumentError, "A user must be provided for " unless u 
-      self.user = u
+    
+    def send_auth_request
+      if user.netflix_valid?
+        puts 'netflix user is valid'
+        # package and send the request
+      elsif user.request_token 
+        # request an access_token
+        puts 'no access token, but there is a request token'
+      else 
+        puts 'requesting request_token'
+        # request a request_token 
+        # save the request_token in the user model with the request_token_secret  
+        request_token = oauth_gateway.get_request_token 
+        user.request_token = request_token.token
+        user.request_token_secret = request_token.secret
+        user.save
+        
+         
+      end    
     end
     
     def oauth_gateway( key=self.key, secret=self.secret)
@@ -156,7 +178,16 @@ module NetflixDogs
           :authorize_url => self.class.authorization_url  
          }
       )  
-    end 
+    end
+    
+    def access_token
+      unless @access_token
+        @access_token = user.request_token if user.valid?
+        @access_token = self.request_token.get_access_token  
+      end  
+      @access_token 
+    end
+     
     
     # Userless-OAuth -------------------------------
     # NETFLIX accesses non-protected data without the need for 

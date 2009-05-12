@@ -2,18 +2,23 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe NetflixDogs::UserSearcher do
   before(:each) do
-    @user_data = NetflixDogs::UserData.new(
-      :netflix_id => '1'
-    ) 
-    @user = NetflixDogs::User.new( 'base_path', @user_data ) 
+    @xml = File.open("#{DATA}/user/user_current.xml").read
+    @user_data = OpenStruct.new(  :save => true, :netflix_id => '1'  )
+    @user_data.class.class_eval { include NetflixDogs::NetflixUserValidations } 
+    @requester = NetflixDogs::Requester.new( 'users/current', @user_data )
+    NetflixDogs::Requester.should_receive(:new).with('users/current').and_return(@requester)
+    @user = NetflixDogs::User.new( 'users/current', @user_data ) 
   end
 
-  it 'should have a requester' do 
+  it 'should have a requester' do
+    @requester.stub!(:go).and_return( @xml )
     @user.requester.class.should == NetflixDogs::Requester
   end 
   
   it 'requester should have a user' do 
-   @user.requester.user.should_not be_nil 
+    @user.requester.user.should_not be_nil 
+    @user.requester.user.netflix_id.should == '1'
+    @user.requester.user.save.should == true
   end
   
   describe 'request' do

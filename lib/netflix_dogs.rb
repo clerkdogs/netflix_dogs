@@ -15,13 +15,15 @@ require 'requester'
 require 'searcher'
 require 'parsers/set'
 require 'parsers/member'
+
 require 'catalog/catalog_searcher'
 require 'catalog/title'
 require 'catalog/person'
+
 require 'user/user_searcher'
 require 'user/queue'
 require 'user/user'
-require 'user/user_data'
+require 'user/netflix_user_validations'
 
 module NetflixDogs
   class AuthenticationError < SecurityError

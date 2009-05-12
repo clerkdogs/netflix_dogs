@@ -185,4 +185,8 @@ describe NetflixDogs::Requester do
       
   end  
 
+  describe 'auth relay' do  
+    it 'should request an access token if the user is not valid'
+  end  
+
 end
