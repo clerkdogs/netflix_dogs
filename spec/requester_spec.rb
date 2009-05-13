@@ -193,48 +193,62 @@ describe NetflixDogs::Requester do
       
   end  
 
-  describe 'auth relay' do 
-    
-    describe 'request tokens' do
-      before( :all ) do
-        user_data = YAML.load( File.open( RAILS_ROOT + '/config/sample_user.yml' ) ) 
-        @request_token = OAuth::RequestToken.new( 
-          NetflixDogs::Requester.new('users/current', user(user_data) ).oauth_gateway , 
-          user_data['request_token'], 
-          user_data['request_secret']
-        )                         
-      end 
+  describe 'oauth relay' do
+    before(:all) do
+      @user_data = YAML.load( File.open( RAILS_ROOT + '/config/sample_user.yml' ) ) 
       
-      it 'should request a request token if the user is not valid' do 
-        NetflixDogs::Requester.config_location = RAILS_ROOT + '/config/real_netflix.yml' 
+      @request_token = OAuth::RequestToken.new( 
+        NetflixDogs::Requester.new('users/current', user(@user_data) ).oauth_gateway , 
+        @user_data['request_token'], 
+        @user_data['request_token_secret']
+      )
+      
+      @access_token = OAuth::AccessToken.new(
+        NetflixDogs::Requester.new('users/current', user(@user_data) ).oauth_gateway,
+        @user_data['access_token'], 
+        @user_data['access_token_secret']
+      )
+      @access_token.stub!(:response).and_return(:user_id => 'T1KFIhPAUa7WymWE8IZhgOm8kxKttk7FQZVqyikQL2hF4-')   
+    end
+    
+    before(:each) do
+      NetflixDogs::Requester.config_location = RAILS_ROOT + '/config/real_netflix.yml'
+    end     
+    
+    describe 'request token' do
+      it 'should be requested if the user is not valid' do 
         requester = NetflixDogs::Requester.new( 'users/current', user )
         requester.go( :user )
         requester.request_token.should_not be_nil
         requester.request_token.class.should == OAuth::RequestToken
       end
     
-      it 'should construct an authorization url from the request_token' do
+      it 'should construct an authorization url' do
+        NetflixDogs::Requester.config_location = nil 
         requester = NetflixDogs::Requester.new('users/current', user )
         requester.request_token = @request_token
         redirect_url = requester.oauth_authorization_url 
         redirect_url.should match(/^https:\/\/api-user.netflix.com\/oauth\/login\?/)
         redirect_url.should match(/oauth_token=zmdwx2g7nttz5c255qeytzzp/)
-        redirect_url.should match(/oauth_consumer_key=sdxnmq7pc4v342n6jxnqny2a/) 
+        redirect_url.should match(/oauth_consumer_key=my_big_key/) 
         redirect_url.should match(/application_name=Clerkdogs/)
         redirect_url.should match(/oauth_callback=http%3A%2F%2Fclerkdogs.com%2Fnetflix%2Faccess_token/)
       end
     
-      it 'request should return the redirect url after getting a request token' do
+      it '#go should return the redirect url after getting a request token' do
         requester = NetflixDogs::Requester.new('users/current', user )
         redirect_url = requester.go(:user)
         redirect_url.should == requester.oauth_authorization_url
       end 
     end
     
-    describe 'access token' do  
-      it 'should request an access token if the request token exists'
-    end          
+    it 'should request an access token if the request token exists' do
+      requester = NetflixDogs::Requester.new( 'users/current', user )
+      requester.request_token = @request_token
+      @request_token.should_receive( :get_access_token ).and_return( @access_token )
+      @access_token.should_receive( :get ).and_return( 'xml')
+      requester.go(:user) 
+    end
         
   end  
-
 end

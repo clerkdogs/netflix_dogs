@@ -2,20 +2,21 @@ module NetflixDogs
   # This class *could* be broken into Authentication stuff and Request stuff, but
   # the two classes would be calling each other in very spaghetti ways, so ...
   class Requester 
-    attr_accessor :base_path, :queries, :user, :request_token, :access_token
+    attr_accessor :base_path, :queries, :user, :request_token, :access_token, :http_method
     attr_writer   :signature
     cattr_accessor :key, :secret, :application_name, :authorize_callback_url
     
     # I N I T I A L I Z E -------------------------------
-    def initialize( path, user_object=nil )
+    def initialize( path, user_object=nil, method=nil )
       self.base_path = path
-      self.queries = HashWithIndifferentAccess.new 
+      self.queries = HashWithIndifferentAccess.new
       if user_object
         self.user = user_object
         self.user.class.class_eval do 
           include NetflixUserValidations
-        end  
-      end  
+        end
+      end 
+      self.http_method = method || :get 
     end 
     
     # G O -----------------------------------------------
@@ -149,14 +150,15 @@ module NetflixDogs
     def send_auth_request
       if access_token
         puts 'netflix user is valid'
-        # request the resource
+        access_token.send( http_method, base_path )
       elsif request_token
         # request an access_token
         puts 'no access token, but there is a request token'
         @access_token = request_token.get_access_token
         set_token_in_user( access_token, 'access' ) 
-        # request the original resource
+        access_token.send( http_method, base_path )
       else
+        puts 'no request token'
         # request a request_token 
         # save the request_token in the user model with the request_token_secret  
         @request_token = oauth_gateway.get_request_token
@@ -169,7 +171,12 @@ module NetflixDogs
     def set_token_in_user( token, token_type )
       unless token.nil?
         user.send( "#{token_type}_token=", token.token )
-        user.send( "#{token_type}_token_secret=", token.secret )
+        user.send( "#{token_type}_token_secret=", token.secret ) 
+        if token_type == 'access'
+          user.netflix_id = token.response[:user_id]
+          user.request_token = nil
+          user.request_token_secret = nil
+        end  
         user.save 
       end  
     end  
