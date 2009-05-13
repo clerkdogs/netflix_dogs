@@ -1,9 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
 
-describe NetflixDogs::NetflixUserValidations do
+describe NetflixDogs::NetflixUserMethods do
   def user( hash={} )
     u = OpenStruct.new( hash.merge( :save => true ) )
-    u.class_eval { include NetflixDogs::NetflixUserValidations }
+    u.class_eval { include NetflixDogs::NetflixUserMethods }
     u 
   end  
     

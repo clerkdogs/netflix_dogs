@@ -1,5 +1,5 @@
 module NetflixDogs
-  module NetflixUserValidations
+  module NetflixUserMethods
     
     def netflix_valid?
       valid = true

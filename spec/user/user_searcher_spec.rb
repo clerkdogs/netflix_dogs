@@ -4,7 +4,7 @@ describe NetflixDogs::UserSearcher do
   before(:each) do
     @xml = File.open("#{DATA}/user/user_current.xml").read
     @user_data = OpenStruct.new(  :save => true, :netflix_id => '1'  )
-    @user_data.class.class_eval { include NetflixDogs::NetflixUserValidations } 
+    @user_data.class.class_eval { include NetflixDogs::NetflixUserMethods } 
     @requester = NetflixDogs::Requester.new( 'users/current', @user_data )
     NetflixDogs::Requester.should_receive(:new).with('users/current').and_return(@requester)
     @user = NetflixDogs::User.new( 'users/current', @user_data ) 

@@ -23,7 +23,7 @@ require 'catalog/person'
 require 'user/user_searcher'
 require 'user/queue'
 require 'user/user'
-require 'user/netflix_user_validations'
+require 'user/netflix_user_methods'
 
 module NetflixDogs
   class AuthenticationError < SecurityError

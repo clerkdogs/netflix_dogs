@@ -13,7 +13,7 @@ module NetflixDogs
       if user_object
         self.user = user_object
         self.user.class.class_eval do 
-          include NetflixUserValidations
+          include NetflixUserMethods
         end
       end 
       self.http_method = method || :get 
