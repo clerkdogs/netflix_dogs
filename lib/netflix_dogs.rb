@@ -26,8 +26,8 @@ require 'user/user'
 require 'user/netflix_user_methods'
 
 module NetflixDogs
-  class AuthenticationError < SecurityError
-  end   
+  class AuthenticationError < SecurityError; end 
+  class InvalidUserCredentials < AuthenticationError; end 
 end 
 
 class OpenStruct 
