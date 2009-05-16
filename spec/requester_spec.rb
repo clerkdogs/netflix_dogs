@@ -229,7 +229,7 @@ describe NetflixDogs::Requester do
         requester.request_token = @request_token
         redirect_url = requester.oauth_authorization_url 
         redirect_url.should match(/^https:\/\/api-user.netflix.com\/oauth\/login\?/)
-        redirect_url.should match(/oauth_token=zmdwx2g7nttz5c255qeytzzp/)
+        redirect_url.should match(/oauth_token=/)
         redirect_url.should match(/oauth_consumer_key=my_big_key/) 
         redirect_url.should match(/application_name=Clerkdogs/)
         redirect_url.should match(/oauth_callback=http%3A%2F%2Fclerkdogs.com%2Fnetflix%2Faccess_token/)

@@ -7,7 +7,7 @@ module NetflixDogs
     cattr_accessor :key, :secret, :application_name, :authorize_callback_url
     
     # I N I T I A L I Z E -------------------------------
-    def initialize( path, user_object=nil, method=nil )
+    def initialize( path=nil, user_object=nil, method=nil )
       self.base_path = path
       self.queries = HashWithIndifferentAccess.new
       if user_object
@@ -127,9 +127,10 @@ module NetflixDogs
       queries.keys.sort
     end   
      
-       
     
-    # AUTHORIZATION PROTOCOLS ============
+    # U S E R   B A S E D  O A U T H ------- 
+    # ======================================
+    # AUTHORIZATION PROCEEDURE ============
     # OAuth ------------------------------
     # mostly handled by the Oauth gem, used only when accessing protected data 
     # 
@@ -145,59 +146,7 @@ module NetflixDogs
     # After the initial authentication exchange, the access token can be reused, 
     # and is stored in the database with request token information and access secret.
     # All of this is handled by the oauth gem. But it is nice to know what is going
-    # on behind the scenes.
-    
-    def send_auth_request
-      if access_token
-        puts 'netflix user is valid'
-        access_token.send( http_method, base_path )
-      elsif request_token
-        # request an access_token
-        puts 'no access token, but there is a request token'
-        @access_token = request_token.get_access_token
-        set_token_in_user( access_token, 'access' ) 
-        access_token.send( http_method, base_path )
-      else
-        puts 'no request token'
-        # request a request_token 
-        # save the request_token in the user model with the request_token_secret  
-        @request_token = oauth_gateway.get_request_token
-        set_token_in_user( request_token, 'request' ) 
-        # return url for redirection 
-        return oauth_authorization_url
-      end    
-    end 
-    
-    def set_token_in_user( token, token_type )
-      unless token.nil?
-        user.send( "#{token_type}_token=", token.token )
-        user.send( "#{token_type}_token_secret=", token.secret ) 
-        if token_type == 'access'
-          user.netflix_id = token.response[:user_id]
-          user.request_token = nil
-          user.request_token_secret = nil
-        end  
-        user.save 
-      end  
-    end  
-    
-    def request_token
-      @request_token ||= OAuth::RequestToken.new( 
-        oauth_gateway , 
-        user.request_token, 
-        user.request_secret
-      ) if user && user.request_token 
-      @request_token
-    end
-    
-    def access_token
-      @access_token ||= OAuth::AccessToken.new( 
-        oauth_gateway , 
-        user.request_token, 
-        user.request_secret
-      ) if user && user.access_token 
-      @access_token
-    end  
+    # on behind the scenes. 
     
     def oauth_gateway( key=self.key, secret=self.secret)
       OAuth::Consumer.new(
@@ -222,14 +171,79 @@ module NetflixDogs
           :oauth_callback => self.class.authorize_callback_url
         ) 
       end  
+    end   
+    
+    # TOKENS --------------------------
+    def request_token
+      @request_token ||= OAuth::RequestToken.new( 
+        oauth_gateway , 
+        user.request_token, 
+        user.request_secret
+      ) if user && user.request_token 
+      @request_token
     end
+    
+    def access_token
+      @access_token ||= OAuth::AccessToken.new( 
+        oauth_gateway , 
+        user.request_token, 
+        user.request_secret
+      ) if user && user.access_token 
+      @access_token
+    end  
+    
+    # requests access token, sets user details and returns authorization url
+    def get_request_token 
+      raise AuthenticationError, "User object require for request_token requests" unless user 
+      @request_token = oauth_gateway.get_request_token
+      set_token_in_user( request_token, 'request' ) 
+      oauth_authorization_url # return url for redirection 
+    end
+    
+    # requests token based on request token, sets user details and performs the information request
+    def get_access_token
+      raise AuthenticationError, "User object require for access_token requests" unless user 
+      @access_token = request_token.get_access_token
+      set_token_in_user( access_token, 'access' ) 
+      base_path ? access_token.send( http_method, base_path ) : true  
+    end    
+    
+    # AUTOMATED METHODS ---------------
+    
+    def send_auth_request
+      if access_token
+        raise ArgumentError, 'No request path specified' unless base_path
+        access_token.send( http_method, base_path )
+      elsif request_token
+        get_access_token
+      else 
+        # requests access token and returns authorization url
+        get_request_token
+      end    
+    end 
+    
+    def set_token_in_user( token, token_type )
+      unless token.nil?
+        user.send( "#{token_type}_token=", token.token )
+        user.send( "#{token_type}_secret=", token.secret ) 
+        if token_type == 'access'
+          user.netflix_id = token.response[:user_id]
+          user.request_token = nil
+          user.request_token_secret = nil
+        end  
+        user.save 
+      end  
+    end  
      
     
-    # Userless-OAuth -------------------------------
+    # U S E R L E S S - O A U T H ------------------
+    # ==============================================
     # NETFLIX accesses non-protected data without the need for 
     # an access token, which makes it not really oauth. The request
     # still needs all the oauth type packaging. So below are the 
-    # methods for constructing the oauth security, less the token 
+    # methods for constructing the oauth security, less the token
+    
+    # probably this stuff can be packaged by the OAuth gem, TODO investigate! 
     
     def send_non_auth_request 
       sign 
