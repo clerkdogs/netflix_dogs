@@ -1,4 +1,5 @@
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper') 
+require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+require File.expand_path(File.dirname(__FILE__) + '/user_spec_helper') 
 
 describe NetflixDogs::Requester do
   before(:all) do 
@@ -239,14 +240,14 @@ describe NetflixDogs::Requester do
         requester = NetflixDogs::Requester.new('users/current', user )
         redirect_url = requester.go(:user)
         redirect_url.should == requester.oauth_authorization_url
-      end 
+      end
     end
     
     it 'should request an access token if the request token exists' do
       requester = NetflixDogs::Requester.new( 'users/current', user )
       requester.request_token = @request_token
       @request_token.should_receive( :get_access_token ).and_return( @access_token )
-      @access_token.should_receive( :get ).and_return( 'xml')
+      @access_token.stub!( :get ).and_return( 'xml')
       requester.go(:user) 
     end
         

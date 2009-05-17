@@ -1,11 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper') 
+require File.expand_path(File.dirname(__FILE__) + '/../user_spec_helper') 
 
 describe NetflixDogs::NetflixUserMethods do
-  def user( hash={} )
-    u = OpenStruct.new( hash.merge( :save => true ) )
-    u.class_eval { include NetflixDogs::NetflixUserMethods }
-    u 
-  end  
+  include UserSpecHelper
     
   describe "validation" do
     it 'required methods should be netflix_id, and access_token' do 

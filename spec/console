@@ -18,6 +18,14 @@ RAILS_ROOT = File.join( File.dirname(__FILE__), '..' )
 $:.unshift(File.dirname(__FILE__) + '/../lib')
 require 'netflix_dogs' 
 
+def safari( url )
+  `open -a /Applications/Safari.app "#{url}"`
+end 
+
+require File.dirname(__FILE__) + '/../spec/user_spec_helper'
+
+include UserSpecHelper
+
 # load real netflix credentials to test how it really works
 NetflixDogs::Requester.config_location = RAILS_ROOT + '/config/real_netflix.yml' 
 

@@ -7,4 +7,8 @@ DATA =  File.join( File.dirname(__FILE__), '/data' )
 require 'netflix_dogs'
 
 require File.dirname(__FILE__) + '/user_spec_helper'
-include UserSpecHelper
+include UserSpecHelper 
+
+def safari( url )
+  `open -a /Applications/Safari.app "#{url}"`
+end  

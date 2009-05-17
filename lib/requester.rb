@@ -101,7 +101,8 @@ module NetflixDogs
     end
     
     def query_path # does not include the api_url
-      base_path + '?' + query_string
+      q = query_string 
+      q.blank? ?  base_path : base_path + '?' + query_string
     end
     
     def query_string(include_oauth_signature=true)
@@ -148,6 +149,10 @@ module NetflixDogs
     # All of this is handled by the oauth gem. But it is nice to know what is going
     # on behind the scenes. 
     
+    def self.oauth_gateway( user=nil )
+      Requester.new.oauth_gateway( nil, user )
+    end  
+    
     def oauth_gateway( key=self.key, secret=self.secret)
       OAuth::Consumer.new(
         key,
@@ -174,6 +179,18 @@ module NetflixDogs
     end   
     
     # TOKENS --------------------------
+    def self.get_request_token( user ) 
+      new( nil, user ).get_request_token
+    end
+    
+    def self.get_access_token( user ) 
+      new( nil, user ).get_access_token
+    end
+    
+    def self.access_token( user ) 
+      new( nil, user ).access_token 
+    end      
+    
     def request_token
       @request_token ||= OAuth::RequestToken.new( 
         oauth_gateway , 
@@ -194,7 +211,7 @@ module NetflixDogs
     
     # requests access token, sets user details and returns authorization url
     def get_request_token 
-      raise AuthenticationError, "User object require for request_token requests" unless user 
+      raise AuthenticationError, "User object required for request_token requests" unless user 
       @request_token = oauth_gateway.get_request_token
       set_token_in_user( request_token, 'request' ) 
       oauth_authorization_url # return url for redirection 
@@ -202,18 +219,18 @@ module NetflixDogs
     
     # requests token based on request token, sets user details and performs the information request
     def get_access_token
-      raise AuthenticationError, "User object require for access_token requests" unless user 
+      raise AuthenticationError, "User object required for access_token requests" unless user 
       @access_token = request_token.get_access_token
       set_token_in_user( access_token, 'access' ) 
       base_path ? access_token.send( http_method, base_path ) : true  
-    end    
+    end
     
     # AUTOMATED METHODS ---------------
     
     def send_auth_request
       if access_token
         raise ArgumentError, 'No request path specified' unless base_path
-        access_token.send( http_method, base_path )
+        access_token.send( http_method, url )
       elsif request_token
         get_access_token
       else 
