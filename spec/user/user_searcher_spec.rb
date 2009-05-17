@@ -4,22 +4,20 @@ describe NetflixDogs::UserSearcher do
   describe 'initialization ' do
     before(:each) do
       @xml = File.open("#{DATA}/user/user_current.xml").read
-      @user_data = OpenStruct.new(  :save => true, :netflix_id => '1'  )
-      @user_data.class.class_eval { include NetflixDogs::NetflixUserMethods } 
-      @requester = NetflixDogs::Requester.new( 'users/current', @user_data )
+      @requester = NetflixDogs::Requester.new( 'users/current', user(:netflix_id => '1') )
       NetflixDogs::Requester.stub!(:initialize).with('users/current').and_return(@requester)
-      @user = NetflixDogs::User.new( 'users/current', @user_data ) 
+      @user_requester = NetflixDogs::User.new( 'users/current', user(:netflix_id => '1') ) 
     end
 
     it 'should have a requester' do
       @requester.stub!(:go).and_return( @xml )
-      @user.requester.class.should == NetflixDogs::Requester
+      @user_requester.requester.class.should == NetflixDogs::Requester
     end 
   
     it 'requester should have a user' do 
-      @user.requester.user.should_not be_nil 
-      @user.requester.user.netflix_id.should == '1'
-      @user.requester.user.save.should == true
+      @user_requester.requester.user.should_not be_nil 
+      @user_requester.requester.user.netflix_id.should == '1'
+      @user_requester.requester.user.save.should == true
     end
   end    
   
