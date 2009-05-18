@@ -36,7 +36,7 @@ describe NetflixDogs::NetflixUserMethods do
       @user.should_not_receive(:save)
       @user.update_from_oauth( params )
       @user.access_token.should == 'T1B04dSxqDGwX6j99CV5CJHDQt1SzSPBCdlj1cqjzJ.BMlPLwg8reHkeMdF9jSYiPbu0tXvlhat7Ev41mNe0upFg--'
-      @user.access_token_secret.should == 'eGXQFmb92zWA'
+      @user.access_secret.should == 'eGXQFmb92zWA'
       @user.netflix_id.should == 'T1KFIhPAUa7WymWE8IZhgOm8kxKttk7FQZVqyikQL2hF4-'
     end 
     
@@ -50,7 +50,7 @@ describe NetflixDogs::NetflixUserMethods do
       @user.should_receive(:save)
       @user.update_from_oauth!( params )
       @user.access_token.should == 'T1B04dSxqDGwX6j99CV5CJHDQt1SzSPBCdlj1cqjzJ.BMlPLwg8reHkeMdF9jSYiPbu0tXvlhat7Ev41mNe0upFg--'
-      @user.access_token_secret.should == 'eGXQFmb92zWA'
+      @user.access_secret.should == 'eGXQFmb92zWA'
       @user.netflix_id.should == 'T1KFIhPAUa7WymWE8IZhgOm8kxKttk7FQZVqyikQL2hF4-'
     end  
   end    
