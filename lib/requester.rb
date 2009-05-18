@@ -209,19 +209,27 @@ module NetflixDogs
       @access_token
     end  
     
+    def get_request_token!
+      get_request_token(true)
+    end
+    
+    def get_access_token!
+      get_access_token(true)
+    end  
+    
     # requests access token, sets user details and returns authorization url
-    def get_request_token 
+    def get_request_token( save_user=false ) 
       raise AuthenticationError, "User object required for request_token requests" unless user 
       @request_token = oauth_gateway.get_request_token
-      set_token_in_user( request_token, 'request' ) 
+      set_token_in_user( request_token, 'request' ) if save_user
       oauth_authorization_url # return url for redirection 
     end
     
     # requests token based on request token, sets user details and performs the information request
-    def get_access_token
+    def get_access_token( save_user=false )
       raise AuthenticationError, "User object required for access_token requests" unless user 
       @access_token = request_token.get_access_token
-      set_token_in_user( access_token, 'access' ) 
+      set_token_in_user( access_token, 'access' ) if save_user
       base_path ? access_token.send( http_method, base_path ) : true  
     end
     
@@ -232,10 +240,10 @@ module NetflixDogs
         raise ArgumentError, 'No request path specified' unless base_path
         access_token.send( http_method, url )
       elsif request_token
-        get_access_token
+        get_access_token!
       else 
         # requests access token and returns authorization url
-        get_request_token
+        get_request_token!
       end    
     end 
     
