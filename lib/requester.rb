@@ -187,6 +187,14 @@ module NetflixDogs
       new( nil, user ).get_access_token
     end
     
+    def self.get_request_token!( user ) 
+      new( nil, user ).get_request_token!
+    end
+    
+    def self.get_access_token!( user ) 
+      new( nil, user ).get_access_token!
+    end
+    
     def self.access_token( user ) 
       new( nil, user ).access_token 
     end      
