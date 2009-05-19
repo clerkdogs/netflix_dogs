@@ -201,7 +201,7 @@ module NetflixDogs
     
     def request_token
       @request_token ||= OAuth::RequestToken.new( 
-        oauth_gateway , 
+        oauth_gateway, 
         user.request_token, 
         user.request_secret
       ) if user && user.request_token 
@@ -210,7 +210,7 @@ module NetflixDogs
     
     def access_token
       @access_token ||= OAuth::AccessToken.new( 
-        oauth_gateway , 
+        oauth_gateway, 
         user.request_token, 
         user.request_secret
       ) if user && user.access_token 
@@ -262,7 +262,7 @@ module NetflixDogs
         if token_type == 'access'
           user.netflix_id = token.response[:user_id]
           user.request_token = nil
-          user.request_token_secret = nil
+          user.request_secret = nil
         end  
         user.save 
       end  

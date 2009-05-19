@@ -242,14 +242,16 @@ describe NetflixDogs::Requester do
         redirect_url.should == requester.oauth_authorization_url
       end
     end
-    
-    it 'should request an access token if the request token exists' do
-      requester = NetflixDogs::Requester.new( 'users/current', user )
-      requester.request_token = @request_token
-      @request_token.should_receive( :get_access_token ).and_return( @access_token )
-      @access_token.stub!( :get ).and_return( 'xml')
-      requester.go(:user) 
-    end
-        
+     
+    describe 'access token' do 
+      it 'should request an access token if the request token exists' do
+        requester = NetflixDogs::Requester.new( 'users/current', user )
+        requester.request_token = @request_token
+        @request_token.should_receive( :get_access_token ).and_return( @access_token )
+        @access_token.stub!( :get ).and_return( 'xml')
+        requester.go(:user) 
+      end 
+    end  
+  
   end  
 end
