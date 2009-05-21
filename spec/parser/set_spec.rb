@@ -69,7 +69,15 @@ describe NetflixDogs::Parser::Set do
       set.type.should == 'people'
       set.member_type.should == 'person'
       set.members.size.should == 2 
-    end
+    end 
+    
+    it 'should find members when sets members are custom and provided in an argument' do
+      xml = File.open( "#{DATA}/user/user_queue.xml", 'r' ).read
+      set = NetflixDogs::Parser::Set.new(xml, {:child => 'queue_item'})
+      set.type.should == 'queue'
+      set.member_type.should == 'queue_item'
+      set.members.size.should == 3
+    end  
         
   end  
     

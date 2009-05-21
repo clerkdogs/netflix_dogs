@@ -2,13 +2,13 @@ module NetflixDogs
   module Parser
     class Set < Array
     
-      attr_accessor :number_of_results, :start_index, :results_per_page,
-        :page, :per_page, :total_pages, :type, :xml, :parser
+      attr_accessor :number_of_results, :start_index, :results_per_page, :opts,
+        :page, :per_page, :total_pages, :type, :xml, :parser, :etag, :child
       attr_writer :member_type  
     
-      # set_type is the outermost xml 
-      def initialize(xml)
+      def initialize(xml, opts={})
         self.xml = xml
+        self.opts = opts
         setup_parser
         add_pagination
         parse
@@ -18,7 +18,8 @@ module NetflixDogs
       def setup_parser
         xml_parser = Nokogiri.XML(xml)
         self.parser = xml_parser.child
-        self.type =  parser.name # should be the first tag name in the file
+        self.type =  parser.name # should be the first tag name in the file 
+        self.member_type = opts[:child] if opts[:child]
       end
     
       def add_pagination
@@ -27,14 +28,21 @@ module NetflixDogs
       end 
     
       def load_stats
-        tag = parser.search('number_of_results')
-        self.number_of_results = tag.first.content.to_i if tag && tag.first
-        tag = parser.search('start_index')
-        self.start_index = tag.first.content.to_i if tag && tag.first
-        tag = parser.search('results_per_page')
-        self.results_per_page = tag.first.content.to_i if tag && tag.first
-      end 
-    
+        load_stat('number_of_results')
+        load_stat('start_index')
+        load_stat('results_per_page') 
+        load_stat('etag', false) 
+      end
+      
+      def load_stat(name, convert_to_i=true) 
+        tag = parser.search(name)
+        if convert_to_i
+          self.send("#{name}=", tag.first.content.to_i ) if tag && tag.first
+        else 
+          self.send("#{name}=", tag.first.content ) if tag && tag.first
+        end  
+      end  
+      
       def calculate_pagination
         self.per_page = results_per_page
         self.total_pages = ( number_of_results / per_page.to_f ).round

@@ -8,11 +8,9 @@ describe NetflixDogs::Queue do
     @user = user_with_access
   end 
   
-  it 'should make a successful request' do 
+  it 'should make a successful request' do
+    pending 
     response =  NetflixDogs::Queue.get( @user )
-    puts response.class
-    puts response.body
-    puts (response.methods - Object.new.methods).sort.inspect
   end
     
 end                            

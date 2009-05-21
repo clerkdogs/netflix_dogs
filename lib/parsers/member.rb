@@ -25,6 +25,7 @@ module NetflixDogs
       attr_accessor :parser
     
       def initialize( xml_parser, lazy=true ) 
+        xml_parser = Nokogiri.XML( xml_parser ) if xml_parser.class == String
         self.parser = xml_parser 
       end
       
@@ -55,7 +56,7 @@ module NetflixDogs
     
       def find_tag_by_link( name )
         find do 
-          parser.css("link[title=#{name}]") 
+          parser.css("link[title='#{name}']") 
         end  
       end
     

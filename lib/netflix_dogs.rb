@@ -4,7 +4,8 @@ require 'rubygems'
 require 'activesupport'
 require 'uri'
 require 'net/http'
-require 'oauth'
+require 'oauth' # this needs to be the rares github branch!
+require 'oauth/consumer' 
 require 'nokogiri'
 require 'ostruct'
 

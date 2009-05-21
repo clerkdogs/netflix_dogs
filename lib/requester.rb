@@ -211,8 +211,8 @@ module NetflixDogs
     def access_token
       @access_token ||= OAuth::AccessToken.new( 
         oauth_gateway, 
-        user.request_token, 
-        user.request_secret
+        user.access_token, 
+        user.access_secret
       ) if user && user.access_token 
       @access_token
     end  
@@ -335,6 +335,11 @@ module NetflixDogs
       end   
     public  
                
+    if defined?( RAILS_DEFAULT_LOGGER )
+      def logger
+        RAILS_DEFAULT_LOGGER
+      end  
+    end  
      
   end # Requester
 end # NetflixDogs  
