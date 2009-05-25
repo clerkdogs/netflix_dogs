@@ -260,8 +260,11 @@ module NetflixDogs
         user.send( "#{token_type}_token=", token.token )
         user.send( "#{token_type}_secret=", token.secret ) 
         if token_type == 'access'
-          user.netflix_id = token.response[:user_id]
+          logger.debug("token = #{token.inspect}")
+          user.netflix_id = token.params[:user_id]
+          logger.debug("before clearing the request_token")
           user.request_token = nil
+          logger.debug("before clearing the request_secret")
           user.request_secret = nil
         end  
         user.save 
